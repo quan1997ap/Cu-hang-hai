@@ -1,0 +1,145 @@
+$menu-button-background: #ececec;
+
+:host {
+  $menu-item-height: 40px;
+
+  a {
+    text-decoration: none;
+
+    &:focus-visible {
+      outline: none !important;
+    }
+  }
+
+  span {
+    font-size: 14px;
+  }
+
+  .menu-project {
+    position: absolute;
+    z-index: 1;
+    top: -12px;
+    left: calc(100% + 14px);
+  }
+
+  .menu-item {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    background: transparent;
+    border: none;
+    padding: 2px 2px;
+    position: relative;
+
+    .menu-item-name {
+      margin-left: 12px;
+    }
+
+    &.active-menu,
+    &:hover {
+      .menu-button {
+        // background: $menu-button-background !important;
+        border-radius: 4px;
+        color: #E03 !important;
+
+        .menu-icon {
+          color: #fff !important;
+        }
+      }
+    }
+
+    .menu-button {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      font-size: 1rem;
+      background: transparent;
+      border: none;
+      padding: 6px 8px;
+      color: #222;
+      min-height: 40px;
+      position: relative;
+
+      &.menu-close {
+        width: 40px;
+      }
+
+      .arrow {
+        font-size: 12px;
+        line-height: 24px;
+        position: absolute;
+        right: 8px;
+        transition-duration: 0.4s;
+        transform: rotate(0deg);
+
+        &.down {
+          transform: rotate(180deg);
+        }
+      }
+    }
+  }
+
+  .sub-menu {
+    transition-duration: 0.4s;
+    transition-timing-function: cubic-bezier(0.25, 0.8, 0.25, 1);
+    transition-property: height;
+
+    .menu-item {
+      padding: 0px 2px !important;
+
+      .menu-button {
+        margin-left: 16px;
+
+        .mat-icon {
+          font-size: 12px;
+          line-height: 24px;
+        }
+      }
+    }
+
+    // Animation
+    &.open {
+      $subItemCounts: 1, 2, 3, 4, 5, 6;
+
+      @each $subItemCount in $subItemCounts {
+        &.sub-items-#{$subItemCount} {
+          height: $menu-item-height * $subItemCount;
+        }
+      }
+
+      .menu-item {
+
+        &.active-menu,
+        &:hover {
+          .menu-button {
+            background: transparent !important;
+          }
+        }
+      }
+    }
+
+    &.close {
+      height: 0;
+      overflow: hidden;
+    }
+  }
+
+  mat-divider {
+    margin-top: 16px;
+    margin-bottom: 16px;
+    background-color: rgba(255, 255, 255, 0.5);
+
+    &.menu-close {
+      width: 44px;
+      float: right;
+    }
+  }
+}
+
+::ng-deep {
+  .mat-drawer-side {
+    box-shadow: none;
+  }
+}

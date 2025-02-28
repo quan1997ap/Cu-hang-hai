@@ -1,0 +1,63 @@
+:host {
+    $menu-expand-width: 270px;
+    $menu-collapse-width: 68px;
+    $menu-bg: #F5F7F9;
+    $main-header-height: 64px;
+
+    mat-toolbar {
+        padding: 0 16px 0 0 !important;
+        background: #f5f8fa;
+
+        .top-menu {
+            height: $main-header-height;
+            // border-bottom: 1px dashed #393945;
+            background: $menu-bg;
+            color: #fff;
+            transition-duration: 0.4s;
+            transition-timing-function: cubic-bezier(0.25, 0.8, 0.25, 1);
+            transition-property: width;
+
+            &.open {
+                width: $menu-expand-width;
+            }
+
+            &.close {
+                width: $menu-collapse-width;
+            }
+        }
+    }
+
+    mat-sidenav-container {
+        .mat-drawer-content {
+            background: #ffffff;
+            height: calc(100vh - #{$main-header-height});
+            margin-left: #{$menu-collapse-width} !important;
+            background-color: red;
+        }
+
+        mat-sidenav.mat-drawer {
+            width: $menu-expand-width;
+            border-right: none;
+            background: $menu-bg;
+            visibility: visible !important;
+            overflow: visible; // for display submenu
+            transform: translate3d(calc(#{$menu-collapse-width} - 100%), 0, 0);
+            &.mat-drawer-opened {
+                width: $menu-expand-width !important;
+                transform: translate3d(calc(#{$menu-expand-width} - 100%), 0, 0) !important;
+            }
+        }
+
+        // ::ng-deep {
+        //     .mat-drawer-inner-container {
+        //         padding: 8px 12px;
+        //         overflow: inherit !important; // for display submenu
+        //     }
+        // }
+
+    }
+
+    .content {
+        margin: 20px 20px 0px 20px;
+    }
+}
