@@ -5,26 +5,33 @@ import { MatIconModule, MatIconRegistry } from '@angular/material/icon';
 import { CommonModule } from '@angular/common';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { DomSanitizer } from '@angular/platform-browser';
+import { SidenavComponent } from './components/sidenav/sidenav.component';
 @Component({
-  selector: 'app-root',
+  selector: 'app-admin-page',
   standalone: true,
   imports: [
     RouterOutlet,
     MatSidenavModule,
     MatIconModule,
     CommonModule,
-    MatToolbarModule
+    MatToolbarModule,
+    SidenavComponent
   ],
 
   providers: [
     MatIconRegistry
   ],
-  templateUrl: './app.component.html',
-  styleUrl: './app.component.scss'
+  templateUrl: './admin-page.component.html',
+  styleUrl: './admin-page.component.scss'
 })
-export class AppComponent {
+export class AdminPageComponent {
 
   title = 'base-app';
+  collapsed = signal(false);
+  sidenavCollapsedWidth = '64px';
+  sidenavExpandedWidth = '250px';
+  sidenavWidth = computed(() => this.collapsed() ? this.sidenavCollapsedWidth : this.sidenavExpandedWidth)
+
   constructor(
     private matIconRegistry: MatIconRegistry,
     private domSanitizer: DomSanitizer,

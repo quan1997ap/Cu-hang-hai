@@ -1,0 +1,60 @@
+:host {
+    // Header
+    .sidenav-header {
+        padding-top: 24px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+        &>img {
+            object-fit: cover;
+            object-position: center;
+            border-radius: 100%;
+            margin-bottom: 10px;
+        }
+
+        .header-text {
+            height: 3rem;
+            width: 100%;
+            text-align: center;
+            >h2 {
+                margin: 0;
+                font-size: 1rem;
+                line-height: 1.5rem;
+                font-weight: 400;
+            }
+
+            >p {
+                margin: 0;
+                font-size: .8rem;
+                color: #83838e;
+            }
+        }
+
+        .hide-header-text {
+            opacity: 0;
+            height: 0 !important;
+        }
+    }
+    // Menu Item
+    & * {
+        transition: all 500ms ease-in-out;
+
+        &::ng-deep {
+            .menu-item {
+                border-radius: 0 !important;
+                border-left: 5px solid transparent;
+
+                &:hover {
+                    background-color: #dae2f9;
+                }
+            }
+
+            .selected-menu-item {
+                border-left-color: red;
+                background-color: #dae2f9;
+                border-radius: 4px !important;
+            }
+        }
+    }
+}

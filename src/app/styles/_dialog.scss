@@ -1,0 +1,44 @@
+.mat-dialog-container {
+    display: flex !important;
+    overflow: hidden !important;
+
+    .mat-dialog-content {
+        flex: 1;
+        margin-bottom: 24px;
+    }
+
+    .mat-dialog-title {
+        .mat-toolbar-row,
+        .mat-toolbar-single-row {
+          height: 72px !important;
+          padding: 0 24px !important;
+          margin-top: -24px;
+          border-bottom: 1px solid #D9D9D9;
+          width: calc(100% + 48px);
+          margin-left: -24px;
+          font-size: 18px;
+          line-height: 18px;
+          font-weight: 700;
+        }
+        .mat-toolbar{
+          background-color: transparent;
+        }
+    }
+
+    .mat-dialog-actions {
+        padding: 12px 0 !important;
+        height: 72px !important;
+        margin-top: -24px;
+        border-top: 1px solid #D9D9D9;
+        width: calc(100% + 48px);
+        margin-left: -24px;
+    }
+
+    .fx-spacer {
+        flex: 1;
+    }
+}
+.submit-btn{
+  margin-right: 12px;
+  min-width: 74px;
+}

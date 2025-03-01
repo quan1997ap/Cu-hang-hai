@@ -1,0 +1,18 @@
+<mat-toolbar class="mat-elevation-z3">
+    <div class="sidenav-header" [style.width]="sidenavExpandedWidth" >
+        <button mat-icon-button [style.width]="sidenavCollapsedWidth" (click)="collapsed.set(!collapsed())" class="collapsed-button">
+            <mat-icon> menu </mat-icon>
+        </button>
+        <img class="sidenav-logo" src="https://www.vinamarine.gov.vn/f/logo-vinamarine_1_1.png" alt="Logo">
+    </div>
+</mat-toolbar>
+
+<mat-sidenav-container>
+    <mat-sidenav mode="side" [style.width]="sidenavWidth()" [opened]="true" class="mat-elevation-z8">
+        <app-sidenav [collapsed]="collapsed()"></app-sidenav>
+    </mat-sidenav>
+
+    <mat-sidenav-content class="content" [style.margin-left]="sidenavWidth()">
+        <router-outlet></router-outlet>
+    </mat-sidenav-content>
+</mat-sidenav-container>
