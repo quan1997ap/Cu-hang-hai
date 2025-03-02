@@ -107,10 +107,13 @@ export class ListRequestsComponent implements OnInit {
                 this.isLoading =  false;
               }),
               map((res: PageDataResponse<ThongBaoHangHaiRequest>) =>
-                res.pageContent.map((item: ThongBaoHangHaiRequest, index: number) => {
+               {
+                console.log(res)
+                return  res.pageContent.map((item: ThongBaoHangHaiRequest, index: number) => {
                   item.index = index + 1 + this.page$.getValue().pageSize  * this.page$.getValue().currentPage;
                   return item;
                 })
+               }
               ),
               catchError(() => {
                 this.isLoading =  false;

@@ -1,13 +1,14 @@
 <!-- Item -->
 <a 
     mat-list-item 
+    [matTooltip]="collapsed() ? item().label : null"
+    [matTooltipPosition]="'right'"
     class="menu-item"
     [routerLink]="item().router"
     [routerLinkActive]="'selected-menu-item'" 
     #rla="routerLinkActive"
     [activated]="rla.isActive"
-    (click)="toggleNested()"
-    >
+    (click)="toggleNested()">
     <mat-icon matListItemIcon [fontSet]="rla.isActive ? 'material-icons' : 'material-icons-outlined'">
         {{item().icon}}
     </mat-icon>
@@ -31,6 +32,8 @@
         @for( subItem of item().subItems; track subItem.label ){
             <a mat-list-item 
                 class="menu-item"
+                [matTooltip]="collapsed() ? item().label : null"
+                [matTooltipPosition]="'right'"
                 [class.indented]="!collapsed()"
                 [routerLink]="subItem.router" 
                 [routerLinkActive]="'selected-menu-item'" 

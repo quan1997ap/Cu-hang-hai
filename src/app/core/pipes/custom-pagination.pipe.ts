@@ -4,7 +4,7 @@ import { PipeTransform, Pipe } from '@angular/core';
   name: 'vPagination',
   standalone: false
 })
-export class vPaginationPipe implements PipeTransform {
+export class CustomPaginationPipe implements PipeTransform {
   // pageIndex : start form 0
   transform(
     list: any[],

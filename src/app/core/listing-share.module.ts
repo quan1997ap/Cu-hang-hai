@@ -11,14 +11,14 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatTableModule } from '@angular/material/table';
 // Directives
+import { CustomPaginatorDirective } from './directives/custom-paginator.directive';
 
 // Pipes
 import { KeysPipe } from './pipes/keys.pipe';
-import { VPaginatorDirective } from './directives/v-paginator.directive';
 
 // Shared Modules
 import { MatButtonModule } from '@angular/material/button';
-import { vPaginationPipe } from './pipes/v-pagination.pipe';
+import { CustomPaginationPipe } from './pipes/custom-pagination.pipe';
 import { TooltipModule } from './tooltip.module';
 
 
@@ -38,10 +38,10 @@ import { TooltipModule } from './tooltip.module';
   ],
   declarations: [
     // Directives
-    VPaginatorDirective,
+    CustomPaginatorDirective,
     // Pipes
     KeysPipe,
-    vPaginationPipe
+    CustomPaginationPipe
   ],
   exports: [
     CommonModule,
@@ -59,11 +59,11 @@ import { TooltipModule } from './tooltip.module';
     MatPaginatorModule,
 
     // Directives
-    VPaginatorDirective,
+    CustomPaginatorDirective,
 
     // Pipes
     KeysPipe,
-    vPaginationPipe,
+    CustomPaginationPipe,
 
     // Shared
     TooltipModule

@@ -34,7 +34,7 @@ export class SidenavComponent {
     {
       icon: 'dashboard',
       label: 'Home',
-      router: '/admin'
+      router: '/admin/123'
     },
     {
       icon: 'analytics',

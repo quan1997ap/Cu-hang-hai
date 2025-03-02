@@ -46,7 +46,9 @@ export class AppComponent {
       'testcase',
       'clock',
       'pen',
-      'delete-square'
+      'remove',
+      'trash',
+      'delete-square',
     ].forEach((icon) => {
       this.matIconRegistry.addSvgIcon(
         icon,

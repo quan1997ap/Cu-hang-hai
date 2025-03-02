@@ -12,7 +12,7 @@
         <div class="d-flex align-items-center justify-content-between mb-2">
           <!-- Header of Page -->
           <div>
-            <span class="workspace-label" translate> label.projectManagement </span>
+            <span class="workspace-label" translate> Requests</span>
           </div>
           <div class="d-flex align-items-center justify-content-between">
             <div class="input-group input-search-container me-2">
@@ -34,8 +34,8 @@
         <!-- Table Data section -->
         <div class="m-0 listing-container" style="min-height: calc(100vh - 538px);">
           <ng-container *ngIf="tbhhRequests$ | async as tbhhRequests;">
-            <div class="v-table-container">
-              <table mat-table [dataSource]="tbhhRequests" class="v-table">
+            <div class="cus-table-container">
+              <table mat-table [dataSource]="tbhhRequests" class="cus-table">
                 <ng-container *ngFor="let col of displayedColumns | keys">
                   <ng-container matColumnDef="{{ col }}" [stickyEnd]="listingService.isStickyEndColumn(col, displayedColumns)">
                     <!-- Headers -->
@@ -59,14 +59,17 @@
                           <ng-container *ngSwitchCase="'action'">
                             <div class="d-flex justify-content-center">
                               <!-- group_icon must be first -->
-                              <button class="btn-action btn-edit" matTooltip="Members" (click)="shareProject(request)">
+                              <button class="custom-action warning" matTooltip="Members" (click)="shareProject(request)">
                                 <mat-icon>group_icon</mat-icon>
                               </button>
-                              <button class="btn-action btn-edit" matTooltip="Edit" (click)="editProject(request)">
-                                <mat-icon>edit</mat-icon>
+                              <button class="custom-action" matTooltip="Edit" (click)="editProject(request)">
+                                <mat-icon svgIcon="pen"></mat-icon>
                               </button>
-                              <button class="btn-action btn-delete" matTooltip="Delete" (click)="removeProject(request)">
-                                <mat-icon>delete</mat-icon>
+                              <button class="custom-action accent" matTooltip="Delete" (click)="removeProject(request)">
+                                <mat-icon svgIcon="remove"></mat-icon>
+                              </button>
+                              <button class="custom-action accent" matTooltip="Delete" (click)="removeProject(request)">
+                                <mat-icon svgIcon="remove"></mat-icon>
                               </button>
                             </div>
                           </ng-container>
@@ -104,7 +107,7 @@
             </div>
   
             <div [style.display]="tbhhRequests?.length == 0 ? 'none' : 'block' ">
-              <mat-paginator #paginator class="v-paginator" vPaginator showFirstLastButtons
+              <mat-paginator #paginator class="custom-paginator" cPaginator showFirstLastButtons
                 [length]="(page$ | async)?.totalItem" [pageSize]="(page$ | async)?.pageSize"
                 [pageSizeOptions]="pageSizeOption" (page)="pageChangeEvent($event)">
               </mat-paginator>

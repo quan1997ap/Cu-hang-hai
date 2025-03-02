@@ -17,7 +17,7 @@ import { animate, style, transition, trigger } from "@angular/animations";
     MatListModule
   ],
   templateUrl: './menu-item.component.html',
-  styleUrl: './menu-item.component.scss',
+  styleUrl: '../sidenav.component.scss',
   animations: [
     trigger('expandContractMenu', [
       transition(":enter", [

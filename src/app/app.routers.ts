@@ -4,7 +4,7 @@ import { AdminPageComponent } from "./layouts/admin/admin-page.component";
 import { NotFoundComponent } from './layouts/errors/not-found/not-found.component';
 
 export const routes: Routes = [
-    { path: '', redirectTo: '/home', pathMatch: 'full' },
+    { path: '', redirectTo: '/admin', pathMatch: 'full' },
     {
         path: 'admin',
         component: AdminPageComponent,

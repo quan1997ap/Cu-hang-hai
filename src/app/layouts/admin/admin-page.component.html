@@ -1,9 +1,30 @@
 <mat-toolbar class="mat-elevation-z3">
     <div class="sidenav-header" [style.width]="sidenavExpandedWidth" >
-        <button mat-icon-button [style.width]="sidenavCollapsedWidth" (click)="collapsed.set(!collapsed())" class="collapsed-button">
-            <mat-icon> menu </mat-icon>
-        </button>
+        <div class="collapsed-button-wrap" [style.width]="sidenavCollapsedWidth">
+            <button mat-icon-button (click)="collapsed.set(!collapsed())" class="collapsed-button">
+                <mat-icon> menu </mat-icon>
+            </button>
+        </div>
         <img class="sidenav-logo" src="https://www.vinamarine.gov.vn/f/logo-vinamarine_1_1.png" alt="Logo">
+    </div>
+    <div class="header-right">
+        <div>
+
+        </div>
+        <div>
+            <button mat-fab class="button-icon" >
+                <mat-icon svgIcon="settings"></mat-icon>
+            </button>
+
+            <button mat-fab class="button-icon"  [matMenuTriggerFor]="settingsMenu">
+                <mat-icon svgIcon="user_management">favorite</mat-icon>
+            </button>
+            <mat-menu #settingsMenu>
+                <menu mat-menu-item>Profile</menu>
+                <menu mat-menu-item>Account</menu>
+            </mat-menu>
+
+        </div>
     </div>
 </mat-toolbar>
 

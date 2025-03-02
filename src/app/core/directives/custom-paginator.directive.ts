@@ -15,10 +15,10 @@ import {
 import { MatPaginator } from '@angular/material/paginator';
 
 @Directive({
-  selector: '[vPaginator]',
+  selector: '[cPaginator]',
   standalone: false
 })
-export class VPaginatorDirective implements AfterViewInit, DoCheck {
+export class CustomPaginatorDirective implements AfterViewInit, DoCheck {
   public currentPage = 1;
   public directiveLoaded = false;
   public pageGapTxt = '...';
@@ -147,13 +147,13 @@ export class VPaginatorDirective implements AfterViewInit, DoCheck {
     if (this.paginations && this.paginations.length) {
       this.paginations.forEach((page) => {
         if (page === this.pageGapTxt) {
-          this.ren.insertBefore(
+          this.ren && this.ren.insertBefore(
             pageRangeElement,
             this.createPage(this.pageGapTxt, this.matPag.pageIndex),
             null
           );
         } else {
-          this.ren.insertBefore(
+          this.ren && this.ren.insertBefore(
             pageRangeElement,
             this.createPage(Number(page) - 1, this.matPag.pageIndex),
             null
@@ -164,30 +164,30 @@ export class VPaginatorDirective implements AfterViewInit, DoCheck {
   }
 
   private createPage(i: any, pageIndex: number): any {
-    const linkBtn = this.ren.createElement('mat-button');
-    this.ren.addClass(linkBtn, 'mat-icon-button');
+    const linkBtn = this.ren && this.ren.createElement('mat-button');
+    this.ren && this.ren.addClass(linkBtn, 'mat-icon-button');
 
     const pagingTxt = isNaN(i) ? this.pageGapTxt : +(i + 1);
-    const text = this.ren.createText(pagingTxt + '');
-    this.ren.addClass(linkBtn, 'mat-custom-page');
+    const text = this.ren && this.ren.createText(pagingTxt + '');
+    this.ren && this.ren.addClass(linkBtn, 'mat-mdc-custom-page');
 
     switch (i) {
       case pageIndex:
-        this.ren.setAttribute(linkBtn, 'disabled', 'disabled');
-        this.ren.addClass(linkBtn, 'current-page');
+        this.ren && this.ren.setAttribute(linkBtn, 'disabled', 'disabled');
+        this.ren && this.ren.addClass(linkBtn, 'current-page');
         break;
       case this.pageGapTxt:
-        this.ren.setAttribute(linkBtn, 'disabled', 'disabled');
+        this.ren && this.ren.setAttribute(linkBtn, 'disabled', 'disabled');
         break;
       default:
-        this.ren.listen(linkBtn, 'click', () => {
+        this.ren && this.ren.listen(linkBtn, 'click', () => {
           this.currentPage = i;
           this.switchPage(i);
         });
         break;
     }
 
-    this.ren.appendChild(linkBtn, text);
+    this.ren && this.ren.appendChild(linkBtn, text);
     return linkBtn;
   }
 
@@ -207,36 +207,33 @@ export class VPaginatorDirective implements AfterViewInit, DoCheck {
     }
 
 
-    const pagingContainerMain = this.vr.element.nativeElement.querySelector(
-      '.mat-paginator-range-actions'
-    );
+    const pagingContainerMain = this.vr.element.nativeElement.querySelector( '.mat-mdc-paginator-range-actions' );
 
-    const pageItemsPerPage = this.vr.element.nativeElement.querySelector('div.mat-form-field-flex');
-    this.ren.addClass(pageItemsPerPage, 'mat-paginator-per-page-button');
-
+    const itemsPerPage = this.vr.element.nativeElement.querySelector('div.mat-mdc-form-field-flex');
+    this.ren && this.ren.addClass(itemsPerPage, 'mat-paginator-per-page-button');
 
     if (
       this.vr.element.nativeElement.querySelector(
-        'div.mat-paginator-range-actions div.btn_custom-paging-container'
+        'div.mat-mdc-paginator-range-actions div.btn_custom-paging-container'
       )
     ) {
-      this.ren.removeChild(
+      this.ren && this.ren.removeChild(
         pagingContainerMain,
         this.vr.element.nativeElement.querySelector(
-          'div.mat-paginator-range-actions div.btn_custom-paging-container'
+          'div.mat-mdc-paginator-range-actions div.btn_custom-paging-container'
         )
       );
     }
 
-    this.pagingContainerBtns = this.ren.createElement('div');
+    this.pagingContainerBtns = this.ren && this.ren.createElement('div');
     const refNode =
       this.vr.element.nativeElement.childNodes[0].childNodes[0].childNodes[2]
         .childNodes[5];
-    this.ren.addClass(this.pagingContainerBtns, 'btn_custom-paging-container');
-    this.ren.insertBefore(pagingContainerMain, this.pagingContainerBtns, refNode);
+    this.ren && this.ren.addClass(this.pagingContainerBtns, 'btn_custom-paging-container');
+    this.ren && this.ren.insertBefore(pagingContainerMain, this.pagingContainerBtns, refNode);
 
     const pageRange = this.vr.element.nativeElement.querySelector(
-      'div.mat-paginator-range-actions div.btn_custom-paging-container'
+      'div.mat-mdc-paginator-range-actions div.btn_custom-paging-container'
     );
     pageRange.innerHtml = '';
 

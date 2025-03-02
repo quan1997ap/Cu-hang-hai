@@ -1,0 +1,22 @@
+.custom-action {
+    background: transparent;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    transition: all 500ms ease-in-out;
+
+    mat-icon {
+        color: #222222;
+    }
+
+    &.accent:hover {
+        mat-icon {
+            color: #e30736;
+        }
+    }
+    &.warning:hover {
+        mat-icon {
+            color: #ffbe0F;
+        }
+    }
+}

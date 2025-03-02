@@ -7,18 +7,31 @@
 @use 'breadcrumb';
 @use 'toggler';
 @use 'scrollbar';
+@use 'paginator';
+@use 'overflow';
 
 // Custom theme
 @use "@angular/material" as mat;
 @include mat.core();
 
 
-
-html, body { height: 100%; }
+html, body { 
+    height: 100%;     
+    font-size: 14px; 
+}
 body { 
     margin: 0; 
     font-family: Roboto, "Helvetica Neue", sans-serif; 
+
+    // Custom mat theme
     --primary-color: #cc0000;
+    --mat-icon-color: #8C8C8C;
+    // Default icon
+    --mdc-list-list-item-leading-icon-color: #7d858f; // Icon color
+    --mat-list-list-item-leading-icon-start-space: 8px; // Icon padding left
+    --mat-list-list-item-leading-icon-end-space: 8px; // Icon padding right
+    // Menu
+    -mat-list-active-indicator-color: #f2f2f2; // Menu item hover
 }
 
 

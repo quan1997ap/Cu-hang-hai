@@ -1,0 +1,14 @@
+$maxLines: 1, 2, 3, 4, 5, 6;
+
+@each $maxLine in $maxLines {
+    .max-#{$maxLine}-line {
+        overflow: hidden;
+        text-overflow: ellipsis;
+        display: -webkit-box;
+        -webkit-line-clamp: $maxLine;
+        /* number of lines to show */
+        line-clamp: $maxLine;
+        -webkit-box-orient: vertical;
+        word-break: break-word;
+    }
+}

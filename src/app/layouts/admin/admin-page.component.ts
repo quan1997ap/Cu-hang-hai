@@ -6,6 +6,8 @@ import { CommonModule } from '@angular/common';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { DomSanitizer } from '@angular/platform-browser';
 import { SidenavComponent } from './components/sidenav/sidenav.component';
+import { MatButtonModule } from '@angular/material/button';
+import { MatMenuModule } from '@angular/material/menu';
 @Component({
   selector: 'app-admin-page',
   standalone: true,
@@ -15,7 +17,9 @@ import { SidenavComponent } from './components/sidenav/sidenav.component';
     MatIconModule,
     CommonModule,
     MatToolbarModule,
-    SidenavComponent
+    SidenavComponent,
+    MatButtonModule,
+    MatMenuModule
   ],
 
   providers: [
