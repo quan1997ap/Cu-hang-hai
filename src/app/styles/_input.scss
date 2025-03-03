@@ -1,0 +1,33 @@
+body {
+    // Input - mat-form-field
+    --mat-form-field-container-height: 42px; // Min height
+    --mat-form-field-container-vertical-padding: 8px; // Padding vertical
+    --mdc-filled-text-field-container-color: #fff; // Background input
+    --mat-sys-surface-variant: #e8f0fe;
+    --mat-form-field-state-layer-color: #fff; // Hover background
+}
+
+mat-form-field.custom-input {
+    .mdc-line-ripple {
+        display: none;
+    }
+
+    .mat-mdc-form-field-bottom-align {
+        display: none;
+    }
+
+    .mdc-text-field--filled {
+        border-radius: 4px !important;
+        &:not(.mdc-text-field--disabled) {
+            &:hover,
+            &:active {
+                background-color: #fff !important;
+            }
+        }
+    }
+    .mdc-text-field--no-label .mat-mdc-form-field-infix{
+        padding-top: 8px;
+        padding-bottom: 8px;
+        display: flex;
+    }
+}

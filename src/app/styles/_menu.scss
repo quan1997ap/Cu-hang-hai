@@ -1,0 +1,9 @@
+.mat-mdc-menu-panel{
+    margin: 4px;
+    .mat-mdc-menu-content{
+        background: #fff;
+        .mat-mdc-menu-item{
+            min-height: 40px !important;
+        }
+    }
+}
