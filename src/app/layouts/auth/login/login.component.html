@@ -1,0 +1,35 @@
+<div class="auth-page">
+    <div class="auth-page-background">
+        <img class="logo" src="images/logos/sidebar-logo.png" alt="Logo">
+        <div class="auth-background">
+            <img src="images/backgrounds/login.svg">
+        </div>
+    </div>
+    <form class="login" [autocomplete]="'off'" [formGroup]="loginForm" novalidate (ngSubmit)="onSubmit()">
+        <div class="controls">
+            <h2 class="form-title">Sign in</h2>
+            <p class="form-sub-title">Sign in to your account</p>
+
+            <label>Email</label>
+            <mat-form-field class="custom-input mb-2">
+                <mat-icon matPrefix>person_outline</mat-icon>
+                <input autofocus type="text" matInput placeholder="Username" formControlName="username">
+            </mat-form-field>
+            <br>
+            <label>Password</label>
+            <mat-form-field class="custom-input">
+                <mat-icon matPrefix>lock_outline</mat-icon>
+                <input type="password" autocomplete="false" matInput placeholder="Password" formControlName="password">
+            </mat-form-field>
+            <br>
+            <div class="note">
+                <a mat-button href="#" target="_blank">Forgot password</a>
+            </div>
+            <br>
+            <button type="submit" mat-flat-button class="custom-action" color="primary">Login</button>
+        </div>
+        <div class="form-switch">
+            <span class="question">Don’t have an account ?</span> <strong> Sign up </strong>
+        </div>
+    </form>
+</div>

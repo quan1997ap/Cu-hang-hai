@@ -1,3 +1,15 @@
+body {
+    // Button
+    --mdc-filled-button-container-shape: 4px; // Border-radius
+    --mdc-filled-button-container-height: 36px;// Height
+    --mdc-filled-button-container-height: 36px;
+    --mdc-text-button-container-height: 36px;
+}
+
+a.mdc-button{
+
+}
+
 .custom-action {
     background: transparent;
     border: none;
@@ -14,6 +26,7 @@
             color: #e30736;
         }
     }
+
     &.warning:hover {
         mat-icon {
             color: #ffbe0F;
