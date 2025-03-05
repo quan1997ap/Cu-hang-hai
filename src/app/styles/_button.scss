@@ -72,7 +72,7 @@ mat-icon {
     }
 }
 
-.group-actions-button {
+.fab-extended-button {
     background: #f9f9f9 !important;
 
     .mdc-button__label,
@@ -87,6 +87,18 @@ mat-icon {
         .mdc-button__label,
         mat-icon {
             color: #1b84ff !important;
+        }
+    }
+    &.blue{
+        background-color: #1B84FF !important;
+        .mdc-button__label, mat-icon {
+            color: #fff !important;
+        }
+        &:hover{
+            background-color:  #056EE9 !important;
+            .mdc-button__label, mat-icon {
+                color: #fff !important;
+            }
         }
     }
 }

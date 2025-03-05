@@ -1,8 +1,18 @@
 .page-heading {
-    font-weight: 600 !important;
-    font-size: 1.35rem !important;
-    color: #071437;
-    margin-bottom: 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    .heading-left{
+        .page-heading-title{
+            font-weight: 500 !important;
+            font-size: 1.35rem !important;
+            color: #071437;
+            margin-bottom: 4px;
+        }
+    }
+    .heading-right{
+
+    }
 }
 
 .filter-form {

@@ -9,31 +9,38 @@
       <!-- Content Page -->
       <div>
         <!-- Table tools section -->
-        <div class="d-flex align-items-center justify-content-between mb-2">
+        <div class="page-heading">
           <!-- Header of Page -->
-          <div>
-            <h2 class="page-heading" translate> Requests Management </h2>
-            <ul class="breadcrumb breadcrumb-separatorless fw-semibold fs-7 my-0 pt-1">
-                <li class="breadcrumb-item text-muted">
-                  <a href="/metronic8/demo1/index.html" class="text-muted text-hover-primary"> Home </a>
-                </li>
-                <li class="breadcrumb-item">
-                    <span class="bullet bg-gray-500 w-5px h-2px"></span>
-                </li>
-                <li class="breadcrumb-item text-muted"> Request </li>
-                <li class="breadcrumb-item">
-                    <span class="bullet bg-gray-500 w-5px h-2px"></span>
-                </li>
-                <li class="breadcrumb-item text-muted"> Approved   </li>       
-            </ul>
-          </div>
-          <form class="filter-form" [autocomplete]="'off'" [formGroup]="filterForm" novalidate >
-            <mat-form-field class="custom-input outline mb-2">
-                <mat-icon matPrefix>search</mat-icon>
-                <input autofocus type="text" matInput placeholder="Filter by name" formControlName="searchText">
-            </mat-form-field>
-          </form>
+            <div class="heading-left">
+              <h2 class="page-heading-title" translate> Requests Management </h2>
+              <ul class="breadcrumb breadcrumb-separatorless fw-semibold fs-7 my-0 pt-1">
+                  <li class="breadcrumb-item text-muted">
+                    <a href="/metronic8/demo1/index.html" class="text-muted text-hover-primary"> Home </a>
+                  </li>
+                  <li class="breadcrumb-item">
+                      <span class="bullet bg-gray-500 w-5px h-2px"></span>
+                  </li>
+                  <li class="breadcrumb-item text-muted"> Request </li>
+                  <li class="breadcrumb-item">
+                      <span class="bullet bg-gray-500 w-5px h-2px"></span>
+                  </li>
+                  <li class="breadcrumb-item text-muted"> Approved   </li>       
+              </ul>
+            </div>
+            <div class="heading-right">
+              <button mat-fab extended class="fab-extended-button blue">
+                Add request
+                <mat-icon class="w-12" svgIcon="plus_01"></mat-icon>
+              </button>
+            </div>
         </div>
+
+        <form class="filter-form" [autocomplete]="'off'" [formGroup]="filterForm" novalidate >
+          <mat-form-field class="custom-input outline mb-2">
+              <mat-icon matPrefix>search</mat-icon>
+              <input autofocus type="text" matInput placeholder="Filter by name" formControlName="searchText">
+          </mat-form-field>
+        </form>
   
         <!-- Table Data section -->
         <div class="m-0 listing-container">
@@ -61,7 +68,7 @@
                         <ng-container [ngSwitch]="col">
   
                           <ng-container *ngSwitchCase="'action'">
-                            <button mat-fab extended [matMenuTriggerFor]="actionMenu" class="group-actions-button">
+                            <button mat-fab extended [matMenuTriggerFor]="actionMenu" class="fab-extended-button">
                               Menu
                               <mat-icon class="w-12" svgIcon="arrow_down"></mat-icon>
                             </button>
