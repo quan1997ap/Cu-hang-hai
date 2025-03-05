@@ -1,13 +1,19 @@
 body {
     // Button
     --mdc-filled-button-container-shape: 4px; // Border-radius
-    --mdc-filled-button-container-height: 36px;// Height
+    --mdc-filled-button-container-height: 36px; // Height
     --mdc-filled-button-container-height: 36px;
     --mdc-text-button-container-height: 36px;
 }
 
-a.mdc-button{
-
+.mdc-fab {
+    &.mat-mdc-extended-fab {
+        min-height: 36px;
+        height: 36px;
+        border-radius: 4px;
+        box-shadow: none;
+        line-height: 36px;
+    }
 }
 
 .custom-action {
@@ -30,6 +36,57 @@ a.mdc-button{
     &.warning:hover {
         mat-icon {
             color: #ffbe0F;
+        }
+    }
+}
+
+mat-icon {
+    &.scale-08{
+        transform: scale(0.8);
+    }
+    &.w-12 {
+        width: 12px !important;
+    }
+
+    &.w-16 {
+        width: 16px !important;
+    }
+
+    &.w-20 {
+        width: 20px !important;
+    }
+
+    &.blue,
+    &.blue:hover {
+        color: #1b84ff !important;
+    }
+
+    &.accent,
+    &.accent:hover {
+        color: #e30736 !important;
+    }
+
+    &.warning,
+    &.warning:hover {
+        color: #ffbe0F !important;
+    }
+}
+
+.group-actions-button {
+    background: #f9f9f9 !important;
+
+    .mdc-button__label,
+    mat-icon {
+        color: #071437;
+    }
+
+    &.mat-mdc-extended-fab:hover {
+        box-shadow: none !important;
+        background-color: #dfe8f6 !important;
+
+        .mdc-button__label,
+        mat-icon {
+            color: #1b84ff !important;
         }
     }
 }

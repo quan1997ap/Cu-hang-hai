@@ -27,7 +27,29 @@ mat-form-field.custom-input {
     }
     .mdc-text-field--no-label .mat-mdc-form-field-infix{
         padding-top: 8px;
-        padding-bottom: 8px;
+        padding-bottom: 7px;
         display: flex;
+    }
+    // Input outline
+    &.outline{
+        input::placeholder {
+            font-weight: 500;
+            opacity: 0.5;
+            color: #C4CADA;
+          }
+        .mdc-text-field--filled{
+            background: transparent;
+            &:not(.mdc-text-field--disabled):hover{
+                background-color: transparent !important;
+            }
+        }
+        .mat-mdc-form-field-flex{
+            border: 1px solid #99a1b7;
+            border-radius: 8px;
+            background: #fff;
+        }
+        .mat-mdc-form-field-icon-prefix>.mat-icon, .mat-mdc-form-field-icon-suffix>.mat-icon{
+            padding: 0 8px !important;
+        }
     }
 }

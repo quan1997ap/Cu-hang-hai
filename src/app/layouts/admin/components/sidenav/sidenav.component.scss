@@ -23,13 +23,14 @@
                 margin: 0;
                 font-size: 1rem;
                 line-height: 1.5rem;
-                font-weight: 400;
+                color: #071437;
+                font-weight: 500;
             }
 
             >p {
                 margin: 0;
                 font-size: .8rem;
-                color: #83838e;
+                color: #99a1b7;
             }
         }
 
@@ -45,31 +46,41 @@
     transition: all 500ms ease-in-out;
 
     &::ng-deep {
+        .mat-mdc-list-item-title {
+            font-weight: 500;
+            color: #071437;
+        }
+
         .menu-item {
             margin: 2px 8px;
             width: calc(100% - 16px);
             border-radius: 4px !important;
 
+            &:hover,
             &:focus {
+                background-color: #e9f3ff;
                 outline: none !important;
-            }
 
-            &:hover {
-                background-color: #dae2f9;
+                &::before {
+                    background-color: #e9f3ff !important;
+                }
             }
 
             &.selected-menu-item {
-                background-color: #dae2f9;
+                background-color: #e9f3ff;
 
-                &>mat-icon {
-                    color: #0599ff;
+                &>mat-icon,
+                & .mat-mdc-list-item-title {
+                    color: #1B84FF;
                 }
             }
 
             $arrowSize: 20px;
-            .mdc-list-item--with-leading-icon.mdc-list-item{
+
+            .mdc-list-item--with-leading-icon.mdc-list-item {
                 padding-right: 0 !important;
             }
+
             .mdc-list-item__end {
                 height: $arrowSize !important;
 
@@ -86,7 +97,7 @@
             --mat-list-list-item-leading-icon-start-space: 24px;
         }
 
-        & > mat-icon{
+        &>mat-icon {
             width: 32px;
             text-align: center;
         }

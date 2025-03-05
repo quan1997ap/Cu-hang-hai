@@ -25,6 +25,7 @@
             margin: 0 4px;
             font-size: 1rem;
             font-weight: 500;
+            color: #4B5675 !important; 
         }
 
         .mat-mdc-icon-button,
@@ -32,8 +33,7 @@
             width: 32px !important;
             height: 32px !important;
             line-height: 32px !important;
-            border-radius: 50% !important;
-            border: 1px solid #d3dfd3;
+            border-radius: 4px !important;
             margin: 2px 2px;
             display: flex;
             align-items: center;
@@ -49,13 +49,13 @@
             display: flex;
             .mat-mdc-custom-page {
                 &:hover {
-                    border: 1px solid #E03;
-                    color: #E03 !important;
+                    color: #1B84FF !important;
+                    background-color: transparent;
                 }
         
                 &.current-page {
-                    color: #E03 !important;
-                    border: 1px solid #E03;
+                    color: #fff !important;
+                    background-color: #1B84FF !important;
                 }
             }
         }

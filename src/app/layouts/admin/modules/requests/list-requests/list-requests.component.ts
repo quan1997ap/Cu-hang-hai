@@ -1,7 +1,7 @@
 import { DatePipe } from "@angular/common";
 import { ViewChild } from "@angular/core";
 import { Component, OnInit } from "@angular/core";
-import { FormControl } from "@angular/forms";
+import { FormControl, FormGroup } from "@angular/forms";
 import { MatPaginator } from "@angular/material/paginator";
 import { BehaviorSubject, combineLatest, Observable, of } from "rxjs";
 import { debounceTime, distinctUntilChanged, map, startWith, switchMap, tap, catchError } from "rxjs/operators";
@@ -21,7 +21,7 @@ import { ThongBaoHangHaiRequest } from "../../../../../core/models/tbhh-request.
 export class ListRequestsComponent implements OnInit {
   displayedColumns: Columns = {
     'index': { key: "index", columnName: "Index", width: "80px",  minWidth: "80px", maxWidth: '80px'},
-    'name' : {key: 'name', columnName:'Project Name', width: '500px', minWidth: "300px",  maxWidth: '500px' } ,
+    'name' : {key: 'name', columnName:'Project Name', width: '500px', minWidth: "400px",  maxWidth: '500px' } ,
     'description' : {key: 'description', columnName:'Description', minWidth: '500px',  maxWidth: 'calc(100vw - 1020px)' },
     'action' : {key: 'action', columnName:'Action', isStickyEnd: true, isCenterContent: true, width: '200px', minWidth: '200px'  }
   };
@@ -31,14 +31,28 @@ export class ListRequestsComponent implements OnInit {
   reload$!: BehaviorSubject<boolean>;
   page$!: BehaviorSubject<Pagination>;
   isLoading = false;
-  searchInput: FormControl = new FormControl('');
+  filterForm = new FormGroup(
+    {
+      searchText: new FormControl('')
+    }
+  )
 
   constructor(
     private datePipe: DatePipe,
     public listingService: ListingService,
-    public requestService: RequestService,
+    public requestService: RequestService
   ) {
     this.pageSizeOption = this.listingService.pageSizes;
+    const breadcrumbs  =  [
+      {
+        label: 'Home',
+        url: '/page1/:pageOneID'
+      },
+      {
+        label: 'Request',
+        url: 'page1/:pageOneID/page2/:pageTwoID'
+      }
+    ]
   }
 
   ngOnInit(): void {
@@ -46,6 +60,7 @@ export class ListRequestsComponent implements OnInit {
     this.setUpStreams();
     this.reload$.next(true);
   }
+
 
   setUpStreams() {
     this.isLoading = true;
@@ -57,8 +72,8 @@ export class ListRequestsComponent implements OnInit {
     this.reload$ = new BehaviorSubject<boolean>(true);
     // When search form changed or pagination config change => Call API
     this.tbhhRequests$ = combineLatest(
-      this.searchInput.valueChanges.pipe(
-          startWith(this.searchInput.value),
+      this.filterForm.controls['searchText'].valueChanges.pipe(
+          startWith(this.filterForm.controls['searchText'].value),
           debounceTime(500),
           tap(() => {
               // reset page index when search
@@ -80,12 +95,12 @@ export class ListRequestsComponent implements OnInit {
       tap(() => {  this.isLoading = true; }),
       // switch to another observable
       switchMap(
-        ([searchInput, page, reload]: [string, Pagination, boolean]) => {
+        ([searchInput, page, reload]: [string|null, Pagination, boolean]) => {
           return this.requestService
             .getRequests({
               page: page.currentPage,
               size: page.pageSize,
-              searchText: ![null, ''].includes(searchInput) ? searchInput.trim() :  ''
+              searchText: ![null, ''].includes(searchInput) ? searchInput?.trim() :  ''
             })
             .pipe(
               tap((res: PageDataResponse<ThongBaoHangHaiRequest>): void => {

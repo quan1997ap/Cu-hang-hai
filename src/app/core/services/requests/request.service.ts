@@ -25,7 +25,10 @@ export class RequestService {
                                 totalElements: 1000
                             },
                             pageContent: [
-                                { name: '1', ddescription: '1' }
+                                { name: '56/TBHH-TCTBĐATHHMN 05-03-2025', description: 'Về thông số kỹ thuật của luồng hàng hải Phan Thiết' },
+                                { name: '55/TBHH-TCTBĐATHHMN 05-03-2025', description: 'Về thông số kỹ thuật của vùng nước trước cầu cảng Container quốc tế SP-ITC của Công ty cổ phần Vận tải và Thương mại Quốc tế' },
+                                { name: '56/TBHH-TCTBĐATHHMN 05-03-2025', description: 'Về thông số kỹ thuật của luồng hàng hải Phan Thiết' },
+                                { name: '55/TBHH-TCTBĐATHHMN 05-03-2025', description: 'Về thông số kỹ thuật của vùng nước trước cầu cảng Container quốc tế SP-ITC của Công ty cổ phần Vận tải và Thương mại Quốc tế' },
                             ]
                         }
                     );

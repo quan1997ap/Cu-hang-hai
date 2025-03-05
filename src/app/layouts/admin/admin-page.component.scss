@@ -44,7 +44,8 @@
 
         .mat-sidenav {
             border-radius: 0;
-            background: #f7f7f8;
+            border-right: 1px solid #f7f7f8;
+            background: #ffffff;
         }
     }
 
@@ -74,7 +75,7 @@
             margin: 0 4px;
             &:hover{
                 mat-icon{
-                    color: #0599ff;
+                    color: #1b84ff;
                 }
             }
         }

@@ -43,17 +43,18 @@ export class AppComponent {
       'plus_01',
       'arrow_up',
       'arrow_down',
+      'expand',
       'testcase',
       'clock',
       'pen',
       'remove',
-      'trash',
-      'delete-square',
-    ].forEach((icon) => {
+      'delete',
+      'remove-square',
+    ].forEach((iconName: string) => {
       this.matIconRegistry.addSvgIcon(
-        icon,
+        iconName,
         this.domSanitizer.bypassSecurityTrustResourceUrl(
-          `icons/${icon}.svg`
+          `public/icons/${iconName}.svg`
         )
       );
     })

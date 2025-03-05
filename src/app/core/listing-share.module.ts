@@ -1,3 +1,15 @@
+// Directives
+import { CustomPaginatorDirective } from './directives/custom-paginator.directive';
+
+// Pipes
+import { KeysPipe } from './pipes/keys.pipe';
+
+// Shared Modules
+import { MatButtonModule } from '@angular/material/button';
+import { CustomPaginationPipe } from './pipes/custom-pagination.pipe';
+import { TooltipModule } from './tooltip.module';
+
+// Other
 import { CommonModule, DatePipe } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
@@ -10,17 +22,8 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatTableModule } from '@angular/material/table';
-// Directives
-import { CustomPaginatorDirective } from './directives/custom-paginator.directive';
-
-// Pipes
-import { KeysPipe } from './pipes/keys.pipe';
-
-// Shared Modules
-import { MatButtonModule } from '@angular/material/button';
-import { CustomPaginationPipe } from './pipes/custom-pagination.pipe';
-import { TooltipModule } from './tooltip.module';
-
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
 
 @NgModule({
   imports: [
@@ -57,6 +60,8 @@ import { TooltipModule } from './tooltip.module';
     MatDialogModule,
     MatProgressSpinnerModule,
     MatPaginatorModule,
+    MatFormFieldModule,
+    MatInputModule,
 
     // Directives
     CustomPaginatorDirective,

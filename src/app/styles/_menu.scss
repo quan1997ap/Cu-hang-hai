@@ -2,8 +2,18 @@
     margin: 4px;
     .mat-mdc-menu-content{
         background: #fff;
+        padding: 8px 8px;
         .mat-mdc-menu-item{
-            min-height: 40px !important;
+            min-height: 36px !important;
+            border-radius: 4px;
+            color: #78829D;
+            font-size: 14px;
+            padding: 0 8px;
+            &:hover{
+                transition: color .2s ease;
+                background-color: #E9F3FF;
+                color: #1B84FF;
+            }
         }
     }
 }
