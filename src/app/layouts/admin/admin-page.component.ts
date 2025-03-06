@@ -31,10 +31,10 @@ import { MatMenuModule } from '@angular/material/menu';
 export class AdminPageComponent {
 
   title = 'base-app';
-  collapsed = signal(false);
-  sidenavCollapsedWidth = '64px';
-  sidenavExpandedWidth = '250px';
-  sidenavWidth = computed(() => this.collapsed() ? this.sidenavCollapsedWidth : this.sidenavExpandedWidth)
+  collapsed = signal(true);
+  sidenavCollapsedWidth = 120;
+  sidenavExpandedWidth = 250;
+  sidenavWidth = computed(() => this.collapsed() ? this.sidenavCollapsedWidth + 'px' : this.sidenavExpandedWidth + 'px')
 
   constructor(
     private matIconRegistry: MatIconRegistry,
@@ -46,18 +46,19 @@ export class AdminPageComponent {
   addSvgIcon() {
     [
       'group_service',
-      'metric_rule_template',
-      'alert_rule',
-      'user_management',
+      'template',
+      'template',
+      'user',
       'close',
       'settings',
-      'plus_01',
+      'plus',
       'arrow_up',
       'arrow_down',
-      'testcase',
       'clock',
       'pen',
-      'delete-square'
+      'delete-square',
+      'trash',
+      'h-menu'
     ].forEach((icon) => {
       this.matIconRegistry.addSvgIcon(
         icon,

@@ -72,6 +72,21 @@ mat-icon {
     }
 }
 
+// Button with icon
+.fab-button {
+    background: #f9f9f9 !important;
+    width: 32px !important;
+    height: 32px !important;
+    border-radius: 4px !important;
+    box-shadow: none !important;
+    mat-icon {
+        color: #071437;
+        height: 20px;
+    }
+
+}
+
+// Button with icon + text
 .fab-extended-button {
     background: #f9f9f9 !important;
 
@@ -89,6 +104,13 @@ mat-icon {
             color: #1b84ff !important;
         }
     }
+
+    /*
+    <button mat-fab extended class="fab-extended-button blue">
+        Add request
+        <mat-icon class="w-12" svgIcon="plus"></mat-icon>
+    </button>
+    */
     &.blue{
         background-color: #1B84FF !important;
         .mdc-button__label, mat-icon {

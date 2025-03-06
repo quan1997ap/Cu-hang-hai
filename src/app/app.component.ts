@@ -29,35 +29,5 @@ export class AppComponent {
     private matIconRegistry: MatIconRegistry,
     private domSanitizer: DomSanitizer,
   ) {
-    this.addSvgIcon();
   }
-
-  addSvgIcon() {
-    [
-      'group_service',
-      'metric_rule_template',
-      'alert_rule',
-      'user_management',
-      'close',
-      'settings',
-      'plus_01',
-      'arrow_up',
-      'arrow_down',
-      'expand',
-      'testcase',
-      'clock',
-      'pen',
-      'remove',
-      'delete',
-      'remove-square',
-    ].forEach((iconName: string) => {
-      this.matIconRegistry.addSvgIcon(
-        iconName,
-        this.domSanitizer.bypassSecurityTrustResourceUrl(
-          `public/icons/${iconName}.svg`
-        )
-      );
-    })
-  }
-
 }

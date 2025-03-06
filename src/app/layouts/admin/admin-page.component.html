@@ -1,7 +1,7 @@
 <mat-toolbar class="mat-elevation-z3">
-    <div class="sidenav-header" [style.width]="sidenavExpandedWidth" >
-        <div class="collapsed-button-wrap" [style.width]="sidenavCollapsedWidth">
-            <button mat-icon-button (click)="collapsed.set(!collapsed())" class="collapsed-button">
+    <div class="sidenav-header" [ngStyle]="{'width': sidenavExpandedWidth + 'px' }" >
+        <div class="collapsed-button-wrap" [ngStyle]="{'width': ( sidenavCollapsedWidth - 1 ) + 'px' }">
+            <button mat-icon-button class="collapsed-button">
                 <mat-icon> menu </mat-icon>
             </button>
         </div>
@@ -17,7 +17,7 @@
             </button>
 
             <button mat-fab class="button-icon"  [matMenuTriggerFor]="settingsMenu">
-                <mat-icon svgIcon="user_management">favorite</mat-icon>
+                <mat-icon svgIcon="user"></mat-icon>
             </button>
             <mat-menu #settingsMenu>
                 <menu mat-menu-item>Profile</menu>

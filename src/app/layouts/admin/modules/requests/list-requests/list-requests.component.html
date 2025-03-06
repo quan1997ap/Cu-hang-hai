@@ -30,7 +30,7 @@
             <div class="heading-right">
               <button mat-fab extended class="fab-extended-button blue">
                 Add request
-                <mat-icon class="w-12" svgIcon="plus_01"></mat-icon>
+                <mat-icon class="w-12" svgIcon="plus"></mat-icon>
               </button>
             </div>
         </div>
@@ -68,16 +68,16 @@
                         <ng-container [ngSwitch]="col">
   
                           <ng-container *ngSwitchCase="'action'">
-                            <button mat-fab extended [matMenuTriggerFor]="actionMenu" class="fab-extended-button">
-                              Menu
-                              <mat-icon class="w-12" svgIcon="arrow_down"></mat-icon>
+                            <button mat-fab [matMenuTriggerFor]="actionMenu" class="fab-button">
+                              <mat-icon class="w-12" svgIcon="h-menu"></mat-icon>
                             </button>
+
                             <mat-menu #actionMenu="matMenu">
                               <button mat-menu-item>
-                                <mat-icon class="w-20 blue scale-08">edit</mat-icon> Edit
+                                <mat-icon class="w-20 blue" svgIcon="pen"></mat-icon> Edit
                               </button>
                               <button mat-menu-item>
-                                <mat-icon class="w-20 accent scale-08">delete_forever</mat-icon> Delete
+                                <mat-icon class="w-20 accent" svgIcon="trash"></mat-icon> Delete
                               </button>
                             </mat-menu>
                           </ng-container>

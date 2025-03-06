@@ -32,18 +32,18 @@ export class SidenavComponent {
   }
   menuItems = signal<MenuItem[]>([
     {
-      icon: 'dashboard',
-      label: 'Home',
+      icon: 'group_service',
+      label: 'Dashboard',
       router: '/admin/123'
     },
     {
-      icon: 'analytics',
-      label: 'Analytics',
+      icon: 'settings',
+      label: 'Settings',
       router: '/admin/requests'
     },
     {
-      icon: 'video_library',
-      label: 'Admin',
+      icon: 'template',
+      label: 'Template',
       subItems: [
         {
           icon: 'play_circle',

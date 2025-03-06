@@ -45,6 +45,7 @@
       color: rgb(153, 161, 183) !important;
       text-transform: uppercase;
       font-weight: 500;
+      font-size: 12px;
     }
 
     .mat-mdc-table-sticky,
@@ -53,8 +54,8 @@
     }
 
     td.mat-mdc-cell {
-      border-color: #e1eae3;
-      border-bottom-style: dashed !important;
+      border-color: #f3f6fb;
+      border-bottom-style: solid !important;
       border-width: 1px;
     }
 
