@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { IAuthResponse, TAuthInfo } from '../../models/auth.model';
 import { APIService } from './api.service';
 import { BehaviorSubject, tap } from 'rxjs';
-import { environment } from '../../../../environment/environment';
+import { environment } from '../../../../environments/environment';
 import { Router } from '@angular/router';
 
 @Injectable({
