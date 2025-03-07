@@ -72,13 +72,15 @@
                               <mat-icon class="w-12" svgIcon="h-menu"></mat-icon>
                             </button>
 
-                            <mat-menu #actionMenu="matMenu">
-                              <button mat-menu-item>
-                                <mat-icon class="w-20 blue" svgIcon="pen"></mat-icon> Edit
-                              </button>
-                              <button mat-menu-item>
-                                <mat-icon class="w-20 accent" svgIcon="trash"></mat-icon> Delete
-                              </button>
+                            <mat-menu #actionMenu="matMenu" xPosition="before" >
+                              <div style="width: 120px;">
+                                <button mat-menu-item>
+                                  <mat-icon class="w-20 blue" svgIcon="pen"></mat-icon> Edit
+                                </button>
+                                <button mat-menu-item>
+                                  <mat-icon class="w-20 accent" svgIcon="trash"></mat-icon> Delete
+                                </button>
+                              </div>
                             </mat-menu>
                           </ng-container>
   

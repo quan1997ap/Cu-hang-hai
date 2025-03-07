@@ -1,0 +1,28 @@
+<div ngClass="{{ data.className }}  d-flex toast-wrap ">
+    <div class="d-flex toast-icon">
+      <mat-icon svgIcon="{{ data.icon }}"></mat-icon>
+    </div>
+    <div class="flex-grow-1">
+      <div class="d-flex m-0 align-items-start">
+        <div id="titleToast" class="flex-grow-1 toast-title m-0" >
+          {{ data.title }}
+        </div>
+        <span
+          aria-hidden="true"
+          style="font-size: 1.2em; cursor: pointer"
+          (click)="close()"
+          >
+          <mat-icon class="w-12" svgIcon="close"></mat-icon>
+        </span>
+      </div>
+      <div class="row d-flex justify-content-around m-0">
+        <div
+          id="contentToast"
+          class="col-12 col-sm-12 col-md-12 toast-content m-0"
+        >
+          {{ data.message }}
+        </div>
+      </div>
+    </div>
+  </div>
+  

@@ -11,17 +11,22 @@
         <div>
 
         </div>
-        <div>
+        <div class="header-actions">
             <button mat-fab class="button-icon" >
                 <mat-icon svgIcon="settings"></mat-icon>
             </button>
-
             <button mat-fab class="button-icon"  [matMenuTriggerFor]="settingsMenu">
-                <mat-icon svgIcon="user"></mat-icon>
+                <img class="avatar" src="images/avatars/avatar-1.svg" alt="Logo">
             </button>
             <mat-menu #settingsMenu>
-                <menu mat-menu-item>Profile</menu>
-                <menu mat-menu-item>Account</menu>
+                <div style="min-width: 150px;">
+                    <menu mat-menu-item [routerLink]="['/admin/profile']">
+                        <mat-icon class="w-20 blue" svgIcon="user"></mat-icon> Account
+                    </menu>               
+                    <menu mat-menu-item (click)="logout()">
+                        <mat-icon class="w-20 accent">exit_to_app</mat-icon> Account
+                    </menu>
+                </div>
             </mat-menu>
 
         </div>

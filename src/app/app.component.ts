@@ -1,10 +1,10 @@
-import { Component, computed, signal } from '@angular/core';
+import { AuthService } from './core/services/requests/auth.service';
+import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { MatSidenavModule } from '@angular/material/sidenav';
-import { MatIconModule, MatIconRegistry } from '@angular/material/icon';
+import { MatIconModule } from '@angular/material/icon';
 import { CommonModule } from '@angular/common';
 import { MatToolbarModule } from '@angular/material/toolbar';
-import { DomSanitizer } from '@angular/platform-browser';
 @Component({
   selector: 'app-root',
   standalone: true,
@@ -15,10 +15,7 @@ import { DomSanitizer } from '@angular/platform-browser';
     CommonModule,
     MatToolbarModule
   ],
-
-  providers: [
-    MatIconRegistry
-  ],
+  providers: [],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'
 })
@@ -26,8 +23,8 @@ export class AppComponent {
 
   title = 'base-app';
   constructor(
-    private matIconRegistry: MatIconRegistry,
-    private domSanitizer: DomSanitizer,
+    private authService: AuthService
   ) {
+    this.authService.isAuthenticated();
   }
 }

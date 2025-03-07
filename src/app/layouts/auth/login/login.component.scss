@@ -1,4 +1,13 @@
 :host {
+    :ng-deep {
+        mat-spinner {
+            width: 20px;
+            height: 20px;
+            --mdc-circular-progress-size: 20px;
+            --mdc-circular-progress-active-indicator-width: 20px;
+        }
+    }
+
     .auth-page {
         display: flex;
         width: 100%;
@@ -9,19 +18,22 @@
             flex: 1;
             display: flex;
             flex-direction: column;
-            .logo{
+
+            .logo {
                 width: 110px;
                 position: absolute;
                 left: 40px;
                 top: 40px;
             }
-            .auth-background{
+
+            .auth-background {
                 width: 100%;
                 height: 100%;
                 background: #f1f0eb;
                 display: flex;
                 align-items: flex-end;
-                img{
+
+                img {
                     width: 100%;
                     object-fit: cover;
                     height: 600px;

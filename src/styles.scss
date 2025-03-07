@@ -11,6 +11,9 @@
 @use 'overflow';
 @use 'menu';
 @use 'input';
+@use 'spinner';
+@use 'base';
+
 
 // Custom theme
 @use "@angular/material" as mat;
@@ -28,7 +31,6 @@ body {
     // Custom mat theme
     --primary-color: #cc0000;
     --mat-icon-color: #8C8C8C;
-
 }
 
 

@@ -19,14 +19,3 @@ export interface PageDataResponse<T> {
   pageInfo: PageInfoResponse;
   pageContent: T[];
 }
-
-
-// Using for API get details, create, and others
-export interface DataResponse<T> {
-  status: StatusResponse;
-  data: T;
-}
-
-export interface MoveSuiteResponse<T> {
-  status: StatusResponse
-}

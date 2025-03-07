@@ -1,5 +1,6 @@
+import { AuthService } from './../../core/services/requests/auth.service';
 import { Component, computed, signal } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { RouterModule, RouterOutlet } from '@angular/router';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatIconModule, MatIconRegistry } from '@angular/material/icon';
 import { CommonModule } from '@angular/common';
@@ -19,9 +20,9 @@ import { MatMenuModule } from '@angular/material/menu';
     MatToolbarModule,
     SidenavComponent,
     MatButtonModule,
-    MatMenuModule
+    MatMenuModule,
+    RouterModule
   ],
-
   providers: [
     MatIconRegistry
   ],
@@ -39,6 +40,7 @@ export class AdminPageComponent {
   constructor(
     private matIconRegistry: MatIconRegistry,
     private domSanitizer: DomSanitizer,
+    private authService: AuthService
   ) {
     this.addSvgIcon();
   }
@@ -58,7 +60,11 @@ export class AdminPageComponent {
       'pen',
       'delete-square',
       'trash',
-      'h-menu'
+      'h-menu',
+      'toast-error',
+      'toast-info',
+      'toast-success',
+      'toast-warning'
     ].forEach((icon) => {
       this.matIconRegistry.addSvgIcon(
         icon,
@@ -69,4 +75,7 @@ export class AdminPageComponent {
     })
   }
 
+  logout(){
+    this.authService.logout();
+  }
 }

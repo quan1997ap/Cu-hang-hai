@@ -13,20 +13,25 @@
             <label>Email</label>
             <mat-form-field class="custom-input mb-2">
                 <mat-icon matPrefix>person_outline</mat-icon>
-                <input autofocus type="text" matInput placeholder="Username" formControlName="username">
+                <input autofocus type="text" matInput placeholder="Email" formControlName="email">
             </mat-form-field>
             <br>
             <label>Password</label>
             <mat-form-field class="custom-input">
-                <mat-icon matPrefix>lock_outline</mat-icon>
-                <input type="password" autocomplete="false" matInput placeholder="Password" formControlName="password">
+                <mat-icon class="icon-button" matPrefix (click)="isLock = !isLock">{{ isLock ? 'lock_outline' : 'lock_open' }}</mat-icon>
+                <input type="{{ isLock ? 'password' : 'text' }}" autocomplete="false" matInput placeholder="Password" formControlName="password">
             </mat-form-field>
             <br>
             <div class="note">
                 <a mat-button href="#" target="_blank">Forgot password</a>
             </div>
             <br>
-            <button type="submit" mat-flat-button class="custom-action" color="primary">Login</button>
+            <button type="submit" mat-flat-button class="custom-action" color="primary" [disabled]="loadingService.loading$ | async">
+                Login
+                <span class="subfix">
+                    <mat-spinner class="spinner-small" *ngIf="loadingService.loading$ | async"></mat-spinner>
+                </span>
+            </button>
         </div>
         <div class="form-switch">
             <span class="question">Don’t have an account ?</span> <strong> Sign up </strong>

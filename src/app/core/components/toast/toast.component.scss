@@ -1,0 +1,96 @@
+$success-bg: #E3FCEF;
+$error-bg: #FFEBE6;
+$info-bg: #DEEBFF;
+$warn-bg: #FFFAE6;
+
+::ng-deep .custom-snackbar {
+  margin: 0 !important;
+  padding: 0px !important;
+  margin-bottom: 18px !important;
+  margin-right: 16px !important;
+
+  .mdc-snackbar__surface {
+    background: transparent;
+    padding-right: 0;
+
+    .mat-mdc-snack-bar-label {
+      padding: 0 0 !important;
+
+      .toast-title {
+        font-weight: 500;
+        margin-bottom: 0px;
+        font-size: 16px;
+        line-height: 16px;
+        font-weight: 600;
+        color: #222222;
+        padding: 4px 16px;
+      }
+
+      .toast-message {
+        font-size: 14px;
+      }
+
+      .toast-close-button {
+        span {
+          font-weight: 400;
+          transform: scale(1.5);
+          font-size: 20px;
+          line-height: 20px;
+        }
+      }
+    }
+  }
+
+  .x-button {
+    background: transparent !important;
+  }
+
+  .toast-wrap {
+    border-radius: 4px;
+    padding: 16px;
+  }
+
+  .toast-content {
+    font-size: 15px;
+    font-weight: 400;
+    color: #222222;
+    padding: 0px 16px;
+    margin-top: 8px !important;
+  }
+
+  .toast-icon {
+    width: fit-content;
+  }
+
+  .success-toast {
+    background: $success-bg;
+
+    .toast-icon {
+      color: var(--bs-success);
+    }
+  }
+
+  .error-toast {
+    background: $error-bg;
+
+    .toast-icon {
+      color: var(--bs-danger);
+    }
+  }
+
+  .info-toast {
+    background: $info-bg;
+
+    .toast-icon {
+      color: var(--bs-info);
+    }
+  }
+
+  .warn-toast {
+    background: $warn-bg;
+
+    .toast-icon {
+      color: var(--bs-warning);
+    }
+  }
+}

@@ -6,6 +6,12 @@ body {
     --mdc-text-button-container-height: 36px;
 }
 
+.icon-button{
+ cursor: pointer;
+ &:not(:disabled):hover{
+    color: #1b84ff;
+ }
+}
 .mdc-fab {
     &.mat-mdc-extended-fab {
         min-height: 36px;
@@ -22,11 +28,18 @@ body {
     outline: none;
     cursor: pointer;
     transition: all 500ms ease-in-out;
-
+    position: relative;
     mat-icon {
         color: #222222;
     }
+    &:disabled{
+        opacity: 0.9;
+        cursor: not-allowed;
+    }
 
+    &.blue {
+        background: #005cbb;
+    }
     &.accent:hover {
         mat-icon {
             color: #e30736;
@@ -36,6 +49,17 @@ body {
     &.warning:hover {
         mat-icon {
             color: #ffbe0F;
+        }
+    }
+
+    .mdc-button__label{
+        width: 100%;
+        position: relative;
+        font-size: 14px;
+        .subfix {
+            position: absolute;
+            right: -10px;
+            top: -2px;
         }
     }
 }
