@@ -1,5 +1,5 @@
 export const environment = {
-    production: false,
+    production: true,
     appVersion: 'v1',
     apiUrl: "https://staging-api-tbhh-5uk2.encr.app"
 }
