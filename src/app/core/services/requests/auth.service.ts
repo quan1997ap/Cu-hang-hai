@@ -31,17 +31,17 @@ export class AuthService extends APIService {
 
   login(email: string, password: string,) {
     return this.http.post<IAuthResponse>(
-      `${this.loginUrl}`, { "email": email, "password": password},
+      `${this.loginUrl}`, { "email": email, "password": password },
     ).pipe(
-      tap( (res: IAuthResponse) => {
+      tap((res: IAuthResponse) => {
         this.setAuthToLocalStorage(res);
         this.currentAuth$.next(res);
       })
     )
   }
 
-  getProfile(){
-    return this.http.get<IAuthResponse>( `${this.profileUrl}`)
+  getProfile() {
+    return this.http.get<IAuthResponse>(`${this.profileUrl}`)
   }
 
   private setAuthToLocalStorage(auth: TAuthInfo) {
@@ -49,11 +49,19 @@ export class AuthService extends APIService {
   }
 
   isAuthenticated() {
-    const authInfo = JSON.parse(localStorage.getItem(this.authLocalStorageKey) || '');
-    this.currentAuth$.next(authInfo);
+    const authInfo = localStorage.getItem(this.authLocalStorageKey)
+    try {
+      if (authInfo) {
+        const authInfo = JSON.parse(localStorage.getItem(this.authLocalStorageKey) || '');
+        this.currentAuth$.next(authInfo);
+      }
+    } catch (error) {
+      console.log(error)
+      return undefined;
+    }
   }
 
-  logout(){
+  logout() {
     this.currentAuth$.next(undefined);
     this.router.navigate(['auth/login']);
   }
