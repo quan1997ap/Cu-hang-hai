@@ -31,7 +31,7 @@ export class AuthService extends APIService {
 
   login(email: string, password: string,) {
     return this.http.post<IAuthResponse>(
-      `${this.loginUrl}`, { "email": email, "password": password },
+      `${this.loginUrl}`, { "identifier": email, "password": password },
     ).pipe(
       tap((res: IAuthResponse) => {
         this.setAuthToLocalStorage(res);
