@@ -32,8 +32,8 @@ import { MatMenuModule } from '@angular/material/menu';
 export class AdminPageComponent {
 
   title = 'base-app';
-  collapsed = signal(true);
-  sidenavCollapsedWidth = 120;
+  collapsed = signal(false);
+  sidenavCollapsedWidth = 64;
   sidenavExpandedWidth = 250;
   sidenavWidth = computed(() => this.collapsed() ? this.sidenavCollapsedWidth + 'px' : this.sidenavExpandedWidth + 'px')
 
@@ -49,7 +49,6 @@ export class AdminPageComponent {
     [
       'group_service',
       'template',
-      'template',
       'user',
       'close',
       'settings',
@@ -64,7 +63,10 @@ export class AdminPageComponent {
       'toast-error',
       'toast-info',
       'toast-success',
-      'toast-warning'
+      'toast-warning',
+      'user-setting',
+      'users',
+      'add-square'
     ].forEach((icon) => {
       this.matIconRegistry.addSvgIcon(
         icon,

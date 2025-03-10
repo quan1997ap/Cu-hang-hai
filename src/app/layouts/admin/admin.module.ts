@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { RouterModule, Routes } from '@angular/router';
 import { RequestManagementModule } from '../../layouts/admin/modules/requests/request-management.module';
 import { UserProfileModule } from '../../layouts/admin/modules/user-profile/user-profile.module';
+import { UserManagementModule } from './modules/users/user-management.module';
 
 const adminRoutes: Routes = [
   {
@@ -18,6 +19,10 @@ const adminRoutes: Routes = [
   {
     path: 'requests',
     loadChildren: () => import('../../layouts/admin/modules/requests/request-management.module').then(m => RequestManagementModule)
+  },
+  {
+    path: 'users',
+    loadChildren: () => import('../../layouts/admin/modules/users/user-management.module').then(m => UserManagementModule)
   },
 ]
 

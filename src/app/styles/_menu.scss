@@ -21,5 +21,8 @@
 body {
     // Menu
     -mat-list-active-indicator-color: #f2f2f2; // Menu item hover
-    --mdc-list-list-item-one-line-container-height: 100px; // Menu item height
+    --mdc-list-list-item-one-line-container-height: 46px; // Menu item 
+    --mat-list-list-item-leading-icon-start-space: 8px; // Icon padding left
+    --mat-list-list-item-leading-icon-end-space: 8px; // Icon padding 
+    --mdc-list-list-item-leading-icon-color: #99a1b7;
 }

@@ -13,7 +13,9 @@
 @use 'input';
 @use 'spinner';
 @use 'base';
-
+@use 'typo';
+@use 'form';
+@use 'tags';
 
 // Custom theme
 @use "@angular/material" as mat;

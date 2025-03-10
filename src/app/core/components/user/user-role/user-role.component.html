@@ -1,0 +1,10 @@
+<ng-container [ngSwitch]="role">
+    <ng-container *ngFor="let role of userRoleOptions">
+        <div *ngSwitchCase="role.id">
+            {{role.name}}
+        </div>
+    </ng-container>
+    <div *ngSwitchDefault>
+        {{role}}
+    </div>
+</ng-container>

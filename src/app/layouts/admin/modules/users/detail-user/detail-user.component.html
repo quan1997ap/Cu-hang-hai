@@ -1,0 +1,90 @@
+<mat-toolbar role="toolbar" class="task-header">
+    <span> {{ data.user ? 'Update User' : 'Add User' }} </span>
+    <span class="fx-spacer"></span>
+    <button mat-icon-button  [mat-dialog-close]="true" type="button">
+    <mat-icon>close</mat-icon>
+    </button>
+</mat-toolbar>
+
+<mat-dialog-content >
+<form [formGroup]="userForm" class="vertical-layout">
+
+    <div class="form-control horizontal full-width">
+        <label class="required" >Name </label>
+        <div class="control">
+            <mat-form-field class="custom-input outline full-width">
+                <input autofocus type="text" matInput formControlName="username" maxLength="255">
+            </mat-form-field>
+            <app-form-error-mess [control]="userForm.controls['username']" [controlName]="'Username'"></app-form-error-mess>
+        </div>
+    </div>
+
+    <div class="form-control horizontal full-width">
+        <label class="required" >Email </label>
+        <div class="control">
+            <mat-form-field class="custom-input outline full-width">
+                <input autofocus type="text" matInput formControlName="email" maxLength="255">
+            </mat-form-field>
+            <app-form-error-mess [control]="userForm.controls['email']" [controlName]="'Email'"></app-form-error-mess>
+        </div>
+    </div>
+
+    <div class="form-control horizontal full-width">
+        <label>Full name </label>
+        <div class="control">
+            <mat-form-field class="custom-input outline full-width">
+                <input autofocus type="text" matInput formControlName="full_name" maxLength="255">
+            </mat-form-field>
+            <app-form-error-mess [control]="userForm.controls['full_name']" [controlName]="'Full name'"></app-form-error-mess>
+        </div>
+    </div>
+
+
+    <div class="form-control horizontal full-width">
+        <label class="required" >Password </label>
+        <div class="control">
+            <mat-form-field class="custom-input outline full-width">
+                <mat-icon class="icon-button" matPrefix (click)="isShowPw = !isShowPw">{{ isShowPw ? 'lock_open': 'lock_outline' }}</mat-icon>
+                <input autofocus type="{{ isShowPw ? 'password' : 'text' }}" autocomplete="false" matInput formControlName="password" maxLength="255">
+            </mat-form-field>
+            <app-form-error-mess [control]="userForm.controls['password']" [controlName]="'Password'"></app-form-error-mess>
+        </div>
+    </div>
+
+    <div class="form-control horizontal full-width">
+        <label class="required" >Role </label>
+        <div class="control with-border">
+            <mat-radio-group aria-label="Select an option" formControlName="role">
+                <ng-container *ngFor="let role of userRoleOptions"> 
+                    <mat-radio-button [value]="role.id">{{role.name}}</mat-radio-button>
+                </ng-container>
+            </mat-radio-group>
+            <app-form-error-mess [control]="userForm.controls['role']" [controlName]="'Role'"></app-form-error-mess>
+        </div>
+    </div>
+
+    <div class="form-control horizontal full-width">
+        <label class="required" >Status </label>
+        <div class="control with-border">
+            <mat-radio-group aria-label="Select an option"  formControlName="status">
+                <ng-container *ngFor="let status of userStatusOptions"> 
+                    <mat-radio-button [value]="status.id">{{status.name}}</mat-radio-button>
+                </ng-container>
+            </mat-radio-group>
+            <app-form-error-mess [control]="userForm.controls['status']" [controlName]="'Status'"></app-form-error-mess>
+        </div>
+    </div>
+
+</form>
+</mat-dialog-content>
+
+<mat-dialog-actions align="center">
+    <button type="button" class="btn custom-action info min-width" [mat-dialog-close]="true" >Cancel</button>
+    <button type="button" mat-flat-button class="btn custom-action accent min-width"
+        cdkFocusInitial [disabled]="userForm.invalid || (loadingService.loading$ | async)" (click)="saveUser()" >
+        {{ data.user ? 'Update' : 'Add' }}
+        <span class="subfix">
+            <mat-spinner class="spinner-small" *ngIf="loadingService.loading$ | async"></mat-spinner>
+        </span>
+    </button>
+</mat-dialog-actions>

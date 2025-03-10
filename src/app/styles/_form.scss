@@ -1,0 +1,39 @@
+form {
+    &.vertical-layout {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        flex-direction: column;
+    }
+
+    .full-width {
+        width: 100%;
+    }
+
+    .form-control {
+        &.horizontal {
+            display: flex;
+            gap: 12px;
+            align-items: baseline;
+        }
+
+        label {
+            min-width: 100px;
+            font-size: 1rem;
+        }
+
+        .control {
+            flex: 1;
+            &.with-border{
+                border: 1px solid #E9E9E9;
+                border-radius: 4px;
+                background: #fff;
+            }
+        }
+    }
+
+    .required::after {
+        content: ' *';
+        color: rgb(221, 11, 11);
+    }
+}

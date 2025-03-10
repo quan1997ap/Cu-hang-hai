@@ -6,7 +6,6 @@ import { MatListModule } from '@angular/material/list';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { RouterModule } from '@angular/router';
 import { animate, style, transition, trigger } from "@angular/animations";
-
 @Component({
   selector: 'app-menu-item',
   imports: [

@@ -1,0 +1,10 @@
+<ng-container [ngSwitch]="status">
+    <ng-container *ngFor="let status of userStatusOptions">
+        <ng-container class="tag" *ngSwitchCase="status.id" >
+            <span class="tag" [style.background]="status.background" [style.color]="status.color" >{{status.name}}</span>
+        </ng-container>
+    </ng-container>
+    <div *ngSwitchDefault>
+        {{status}}
+    </div>
+</ng-container>

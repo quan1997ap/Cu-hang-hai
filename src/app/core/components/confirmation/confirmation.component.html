@@ -1,0 +1,23 @@
+<mat-dialog-content [ngStyle]="{'overflow': confirmTitle === 'Clone Test Case' ? 'unset': ''}">
+  <div *ngIf="confirmIcon" style="display: flex; justify-content: center; margin-bottom: 18px;">
+    <div class="out-line-icon">
+      <mat-icon *ngIf="data.icon?.name === 'info'" class="page-icon icon-confirm" svgIcon="icon_help"></mat-icon>
+      <mat-icon *ngIf="data.icon?.name === 'delete'" style="margin-bottom:7px ;" class="page-icon icon-confirm"
+        svgIcon="icon_delete"></mat-icon>
+      <mat-icon *ngIf="data.icon?.name === 'warning'" style="margin-bottom:7px ;" class="page-icon icon-confirm"
+        svgIcon="icon_warning"></mat-icon>
+    </div>
+  </div>
+  <span style="margin-bottom: 8px; font-weight: 700;"> {{ confirmTitle }} </span>
+
+  <div class="confirm-message" [innerHTML]="confirmMessage"></div>
+</mat-dialog-content>
+
+<mat-dialog-actions align="center">
+  <ng-container *ngFor="let action of actions">
+    <button type="button" class="btn btn-{{ action.type }}" style="margin-left: 12px; min-width: 120px;"
+      (click)="confirm(action.data)">
+      {{ action.label }}
+    </button>
+  </ng-container>
+</mat-dialog-actions>

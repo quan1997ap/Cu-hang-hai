@@ -1,0 +1,131 @@
+<!-- //NOSONAR -->
+<ng-template #SpinerSecondary>
+    <div class="spinner-border spinner-border-sm text-secondary" role="status"> <span
+            class="visually-hidden">Loading...</span> </div>
+</ng-template>
+
+<div class="row">
+    <div>
+        <!-- Content Page -->
+        <div>
+            <!-- Table tools section -->
+            <div class="page-heading">
+                <!-- Header of Page -->
+                <div class="heading-left">
+                    <h2 class="page-heading-title" translate> 
+                        <mat-icon svgIcon="users"></mat-icon>
+                        Users Management 
+                    </h2>
+                    <ul class="breadcrumb breadcrumb-separatorless fw-semibold fs-7 my-0 pt-1">
+                        <li class="breadcrumb-item text-muted">
+                            <a href="/metronic8/demo1/index.html" class="text-muted text-hover-primary"> Home </a>
+                        </li>
+                        <li class="breadcrumb-item">
+                            <span class="bullet bg-gray-500 w-5px h-2px"></span>
+                        </li>
+                        <li class="breadcrumb-item text-muted"> Users </li>
+                    </ul>
+                </div>
+                <div class="heading-right">
+                    <button mat-fab extended class="fab-extended-button blue" (click)="editUser()">
+                        <mat-icon class="w-12" svgIcon="add-square"></mat-icon>
+                        Add User
+                    </button>
+                </div>
+            </div>
+
+            <form class="filter-form" [autocomplete]="'off'" [formGroup]="filterForm" novalidate>
+                <mat-form-field class="custom-input outline mb-2">
+                    <mat-icon matPrefix>search</mat-icon>
+                    <input autofocus type="text" matInput placeholder="Filter by name" formControlName="searchText">
+                </mat-form-field>
+            </form>
+
+            <!-- Table Data section -->
+            <div class="m-0 listing-container">
+                <ng-container *ngIf="users$ | async as users;">
+                    <div class="cus-table-container">
+                        <table mat-table [dataSource]="users" class="cus-table">
+                            <ng-container *ngFor="let col of displayedColumns | keys">
+                                <ng-container matColumnDef="{{ col }}"
+                                    [stickyEnd]="listingService.isStickyEndColumn(col, displayedColumns)">
+                                    <!-- Headers -->
+                                    <th mat-header-cell *matHeaderCellDef [width]="displayedColumns[col].width"
+                                        [ngStyle]="{
+                                            'min-width': displayedColumns[col].minWidth,
+                                            'max-width': displayedColumns[col].maxWidth,
+                                            'text-align': displayedColumns[col].isCenterContent ? 'center' : 'left'
+                                        }">
+                                        {{ displayedColumns[col].columnName }}
+                                    </th>
+
+                                    <!-- Columns -->
+                                    <ng-container>
+                                        <td mat-cell *matCellDef="let user" [ngStyle]="{
+                                                'min-width': displayedColumns[col].minWidth,
+                                                'max-width': displayedColumns[col].maxWidth,
+                                                'text-align': displayedColumns[col].isCenterContent ? 'center' : 'left'
+                                            }">
+                                            <ng-container [ngSwitch]="col">
+
+                                                <ng-container *ngSwitchCase="'role'">
+                                                    <app-user-role [role]="user.role"></app-user-role>
+                                                </ng-container>
+                                                <ng-container *ngSwitchCase="'status'">
+                                                    <app-user-status [status]="user.status" ></app-user-status>
+                                                </ng-container>
+
+                                                <ng-container *ngSwitchCase="'action'">
+                                                    <button mat-fab [matMenuTriggerFor]="actionMenu" class="fab-button">
+                                                        <mat-icon class="w-12" svgIcon="h-menu"></mat-icon>
+                                                    </button>
+
+                                                    <mat-menu #actionMenu="matMenu" xPosition="before">
+                                                        <div style="width: 120px;">
+                                                            <button mat-menu-item (click)="editUser(user)"> 
+                                                                <mat-icon class="w-20 blue" svgIcon="pen"></mat-icon>
+                                                                Edit
+                                                            </button>
+                                                            <button mat-menu-item>
+                                                                <mat-icon class="w-20 accent"  svgIcon="trash"></mat-icon> 
+                                                                Delete
+                                                            </button>
+                                                        </div>
+                                                    </mat-menu>
+                                                </ng-container>
+
+                                                <ng-container *ngSwitchDefault>
+                                                    <div [ngStyle]="{ 'text-align': displayedColumns[col].isCenterContent ? 'center' : 'left', '-webkit-box-orient': 'vertical' }"
+                                                        class="max-3-line" matTooltipAuto
+                                                        matTooltip="{{ user[col] }}">
+                                                        {{ user[col] }}
+                                                    </div>
+                                                </ng-container>
+                                            </ng-container>
+                                        </td>
+                                    </ng-container>
+
+                                </ng-container>
+                            </ng-container>
+                            <tr mat-header-row *matHeaderRowDef="displayedColumns | keys"></tr>
+                            <tr mat-row *matRowDef="let row; columns: displayedColumns | keys"></tr>
+                        </table>
+                    </div>
+
+                    <div *ngIf="!isLoading && users?.length == 0" class="no-record">
+                        Result: 0 record
+                    </div>
+
+                    <div [style.display]="users?.length == 0 ? 'none' : 'block' ">
+                        <mat-paginator #paginator class="custom-paginator" cPaginator showFirstLastButtons
+                            [length]="(page$ | async)?.totalItem" [pageSize]="(page$ | async)?.pageSize"
+                            [pageSizeOptions]="pageSizeOption" (page)="pageChangeEvent($event)">
+                        </mat-paginator>
+                    </div>
+
+                </ng-container>
+            </div>
+
+        </div>
+    </div>
+</div>

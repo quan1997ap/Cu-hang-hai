@@ -24,6 +24,7 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatTableModule } from '@angular/material/table';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
+import { FormErrorMessComponent } from './components/form-error-mess/form-error-mess.component';
 
 @NgModule({
   imports: [
@@ -35,9 +36,11 @@ import { MatInputModule } from '@angular/material/input';
     FormsModule,
     ReactiveFormsModule,
     MatProgressSpinnerModule,
+    MatDialogModule,
     // Shared Modules
     MatPaginatorModule,
-    TooltipModule
+    TooltipModule,
+    FormErrorMessComponent
   ],
   declarations: [
     // Directives
@@ -71,7 +74,8 @@ import { MatInputModule } from '@angular/material/input';
     CustomPaginationPipe,
 
     // Shared
-    TooltipModule
+    TooltipModule,
+    FormErrorMessComponent,
   ],
   providers: [DatePipe]
 })

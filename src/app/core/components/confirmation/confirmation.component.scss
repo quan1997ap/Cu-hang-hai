@@ -1,0 +1,40 @@
+:host{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    max-height: unset;
+    min-width: 400px;
+    min-height: 200px;
+    ::ng-deep{
+        .mat-dialog-content{
+            text-align: center;
+            font-size: 16px;
+            padding: 24px 24px 48px 24px;
+            font-weight: 450;
+            .confirm-message{
+              color: #4E4E4E;
+              margin-top: 4px;
+              font-size: 14px;
+            }
+        }
+        .confirm-icon{
+            scale: 2.2;
+            margin-bottom: 20px;
+            margin-top: 12px;
+        }
+    }
+    .out-line-icon{
+        height: 70px;
+        width: 70px;
+        background-color: #FDE5EB;
+        border: 7px solid #FFF5F7;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    .icon-confirm{
+        height: 36px;
+        width: 36px;
+    }
+}

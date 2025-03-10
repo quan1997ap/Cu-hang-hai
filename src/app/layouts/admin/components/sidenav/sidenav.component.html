@@ -1,3 +1,11 @@
+<div class="sidenav-header">
+    <img src="https://angular-youtube-sidebar.vercel.app/assets/profile-pic.jpg" [width]="profilePicSize()" [height]="profilePicSize()">
+    <div class="header-text hide-header-text" [class.hide-header-text]="sideNavCollapsed()">
+        <h2>Your channel</h2>
+        <p>Zoaib Khan</p>
+    </div>
+</div>
+
 <mat-nav-list>
     @for (item of menuItems(); track item.label) {
         <app-menu-item [item]="item" [collapsed]="sideNavCollapsed()"/>

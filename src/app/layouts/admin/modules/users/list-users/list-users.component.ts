@@ -6,27 +6,36 @@ import { MatPaginator } from "@angular/material/paginator";
 import { BehaviorSubject, combineLatest, Observable, of } from "rxjs";
 import { debounceTime, distinctUntilChanged, map, startWith, switchMap, tap, catchError } from "rxjs/operators";
 import { ListingService } from "../../../../../core/services/data-trans/listing.service";
-import { RequestService } from "../../../../../core/services/requests/request.service";
 import { Columns } from "../../../../../core/models/table.model";
 import { Pagination } from "../../../../../core/models/pagination.model";
-import { ThongBaoHangHaiRequest } from "../../../../../core/models/tbhh-request.model";
+import { UserService } from "../../../../../core/services/requests/user.service";
+import { DetailUserComponent } from "../detail-user/detail-user.component";
+import { MatDialog } from "@angular/material/dialog";
+import { DIALOG_CONFIG } from "../../../../../core/const/common.constant";
+import { User } from "../../../../../core/models/user.model";
+import { ConfirmConfig } from "../../../../../core/models/confirmation.model";
+import { ConfirmationComponent } from "../../../../../core/components/confirmation/confirmation.component";
+import { ToastService } from "../../../../../core/services/data-trans/toast.service";
 
 @Component({
-  selector: 'app-list-requests',
-  templateUrl: './list-requests.component.html',
-  styleUrl: './list-requests.component.scss',
+  selector: 'app-list-users',
+  templateUrl: './list-users.component.html',
+  styleUrl: './list-users.component.scss',
   standalone: false
 })
-export class ListRequestsComponent implements OnInit {
+export class ListUsersComponent implements OnInit {
   displayedColumns: Columns = {
     'index': { key: "index", columnName: "Index", width: "80px",  minWidth: "80px", maxWidth: '80px'},
-    'name' : {key: 'name', columnName:'Project Name', width: '500px', minWidth: "400px",  maxWidth: '500px' } ,
-    'description' : {key: 'description', columnName:'Description', minWidth: '500px',  maxWidth: 'calc(100vw - 1020px)' },
+    'username' : {key: 'username', columnName:'Username', width: '200px', minWidth: "200px",  maxWidth: '00px' },
+    'email' : {key: 'email', columnName:'Email', width: '200px', minWidth: "200px",  maxWidth: '200px' },
+    'full_name' : {key: 'full_name', columnName:'Fullname', width: '200px', minWidth: "200px",  maxWidth: '200px' },
+    'role' : {key: 'role', columnName:'Role', width: '100px', minWidth: "100px",  maxWidth: '100px' },
+    'status' : {key: 'status', columnName:'Status', width: '100px', minWidth: "100px",  maxWidth: '100px' },
     'action' : {key: 'action', columnName:'Action', isStickyEnd: true, isCenterContent: true, width: '200px', minWidth: '200px'  }
   };
   @ViewChild('paginator') paginator!: MatPaginator;
   pageSizeOption: number[] = [];
-  tbhhRequests$!: Observable<ThongBaoHangHaiRequest[]>;
+  users$!: Observable<User[]>;
   reload$!: BehaviorSubject<boolean>;
   page$!: BehaviorSubject<Pagination>;
   isLoading = false;
@@ -39,19 +48,11 @@ export class ListRequestsComponent implements OnInit {
   constructor(
     private datePipe: DatePipe,
     public listingService: ListingService,
-    public requestService: RequestService
+    public userService: UserService,
+    public dialog: MatDialog,
+    private toastService: ToastService
   ) {
     this.pageSizeOption = this.listingService.pageSizes;
-    const breadcrumbs  =  [
-      {
-        label: 'Home',
-        url: '/page1/:pageOneID'
-      },
-      {
-        label: 'Request',
-        url: 'page1/:pageOneID/page2/:pageTwoID'
-      }
-    ]
   }
 
   ngOnInit(): void {
@@ -70,7 +71,7 @@ export class ListRequestsComponent implements OnInit {
     });
     this.reload$ = new BehaviorSubject<boolean>(true);
     // When search form changed or pagination config change => Call API
-    this.tbhhRequests$ = combineLatest(
+    this.users$ = combineLatest(
       this.filterForm.controls['searchText'].valueChanges.pipe(
           startWith(this.filterForm.controls['searchText'].value),
           debounceTime(500),
@@ -95,42 +96,45 @@ export class ListRequestsComponent implements OnInit {
       // switch to another observable
       switchMap(
         ([searchInput, page, reload]: [string|null, Pagination, boolean]) => {
-          return this.requestService
-            .getRequests({
+          return this.userService
+            .getUsers({
               page: page.currentPage + 1, // Page start form 1
-              size: page.pageSize,
-              searchText: ![null, ''].includes(searchInput) ? searchInput?.trim() :  ''
+              limit: page.pageSize,
+              searchText: ![null, ''].includes(searchInput) ? searchInput?.trim() :  '',
+              status: 0
             })
             .pipe(
-              tap((res: any): void => {
-                if( res.pageContent.length == 0 && res.pageInfo.totalPages > 0 && this.page$.getValue().currentPage > 0 ){
+              tap((res ) => {
+                console.log(res)
+                if( res.result?.length == 0 && res.pagination.totalPages > 0 && this.page$.getValue().currentPage > 0 ){
                   // Fix bugs. User delete the last item of the last page.
                   const currentPage =  this.page$.getValue().currentPage - 1;
                   this.page$.next({
                     ...this.page$.getValue(),
                     currentPage: currentPage,
-                    totalItem: res.pageInfo.totalElements,
+                    totalItem: res.pagination.totalPages,
                   });
                   if (this.paginator) {  this.paginator.pageIndex = currentPage;  }
                 } else {
                   this.page$.next({
                     ...this.page$.getValue(),
-                    totalItem: res.pageInfo.totalElements,
+                    totalItem: res.pagination.totalPages,
                   });
                 }
                 this.isLoading =  false;
               }),
-              map((res: any) =>
+              map((res) =>
                {
                 console.log(res)
-                return  res.pageContent.map((item: ThongBaoHangHaiRequest, index: number) => {
+                return  res.result.map((item: User, index: number) => {
                   item.index = index + 1 + this.page$.getValue().pageSize  * this.page$.getValue().currentPage;
                   return item;
                 })
                }
               ),
-              catchError(() => {
+              catchError((error) => {
                 this.isLoading =  false;
+                console.log(error)
                 return of([]);
               })
             );
@@ -143,17 +147,50 @@ export class ListRequestsComponent implements OnInit {
   /**
     Add or Edit project
    */
-  editProject(request?: ThongBaoHangHaiRequest){
-
+  editUser(user?: User){
+    let dialogEditRef = this.dialog.open(DetailUserComponent, {
+      disableClose: true,
+      autoFocus: false,
+      width: DIALOG_CONFIG.SIZE.SMALL,
+      minWidth: DIALOG_CONFIG.SIZE.SMALL,
+      data: {
+        user
+      },
+    });
+    dialogEditRef.afterClosed().subscribe((result: { updated: boolean }) => {
+      if ( result &&  result.updated) {
+        this.reload$.next(true);
+      }
+    });
   }
 
-  removeProject(request: ThongBaoHangHaiRequest){
-   
+  removeUser(user: User) {
+    const confirmConfig: ConfirmConfig = {
+      confirmTitle: 'Delete User',
+      confirmMessage: `<div>Are you sure to remove ${user.name} ?</div>`,
+      actions: [
+        { type: 'light', label: 'Cancel', data: { decline: true }, isCloseBtn: true },
+        { type: 'danger', label: 'Confirm', data: { accept: true } },
+      ],
+      icon: { name: 'warning', color: 'accent' },
+    };
+    const dialogRemoveRef = this.dialog.open(ConfirmationComponent, {
+      disableClose: true,
+      autoFocus: false,
+      data: confirmConfig,
+    });
+    dialogRemoveRef.afterClosed().subscribe((confirm) => {
+      if (confirm.accept) {
+        this.userService.removeUser(user.id).subscribe(
+          (resUpdate) => {
+            this.toastService.success({ message: 'User deleted successfully' });
+            this.reload$.next(true);
+          },
+          (error) => {}
+        );
+      }
+    });
   }
-  shareProject(request: ThongBaoHangHaiRequest){
-   
-  }
-
 
   pageChangeEvent($event: any) {
     // Reset PageIndex when Item per page changed

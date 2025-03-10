@@ -1,0 +1,14 @@
+.tag {
+    padding: 4px 4px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    background: #e8f0fe;
+    float: left;
+    margin-bottom: 2px;
+    margin-right: 4px;
+
+    &.more {
+        background: transparent !important;
+        border: none !important;
+    }
+}

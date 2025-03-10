@@ -7,21 +7,18 @@
     mat-toolbar {
         position: relative;
         z-index: 5;
-        background: #fff;
-        border-bottom: 1px solid #f7f7f8;
+        background: #f8fafd;
         padding: 0;
 
         .sidenav-header {
             display: flex;
             align-items: center;
-            height: 100%;
-            .collapsed-button-wrap{
+
+            .collapsed-button-wrap {
                 display: flex;
                 align-items: center;
                 justify-content: center;
-                background: #3644d9;
-                height: calc(100% + 1px);
-                width: 119px;
+
                 .collapsed-button {
                     border: none;
                     background: transparent;
@@ -39,7 +36,7 @@
     }
 
     .content {
-        padding: 20px;
+        padding: 24px;
     }
 
     mat-sidenav-container {
@@ -48,8 +45,7 @@
 
         .mat-sidenav {
             border-radius: 0;
-            border-right: 1px solid #f7f7f8;
-            background: #3644d9;
+            background: #f8fafd;
         }
     }
 
@@ -58,21 +54,31 @@
         transition: all 500ms ease-in-out;
     }
 
+    .mat-sidenav-content{
+        background: #f8fafd;
+        .content{
+            border-radius: 24px;
+            background-color: #fff;
+        }
+    }
+
 }
 
 // top Header
-:host{
-    .header-right{
+:host {
+    .header-right {
         flex: 1;
         height: 100%;
         align-items: center;
         display: flex;
         justify-content: space-between;
         padding: 0 16px;
-        .header-actions{
+
+        .header-actions {
             display: flex;
             align-items: center;
-            .button-icon{
+
+            .button-icon {
                 width: 40px;
                 height: 40px;
                 background: transparent;
@@ -80,13 +86,15 @@
                 border: 1px solid #e6ede6;
                 border-radius: 50%;
                 margin: 0 4px;
-                &:hover{
-                    mat-icon{
+
+                &:hover {
+                    mat-icon {
                         color: #1b84ff;
                     }
                 }
             }
-            .avatar{
+
+            .avatar {
                 width: 36px;
                 height: 36px;
                 margin-top: 3px;

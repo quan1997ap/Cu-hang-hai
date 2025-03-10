@@ -6,7 +6,7 @@ import { Columns } from '../../models/table.model';
 })
 export class ListingService {
 
-    pageSizes = [10, 15, 20]
+    pageSizes = [10, 15, 20, 50];
 
     isStickyEndColumn(column: string, displayedColumns: Columns) {
         let allCols = Object.keys(displayedColumns);
@@ -26,7 +26,7 @@ export class ListingService {
      * @param option the pagination option
      * @returns the current page data
   
-  /******  3302b04b-5645-4655-8f22-163757c0caf0  *******/
+    /******  3302b04b-5645-4655-8f22-163757c0caf0  *******/
     paginationData(
         list: any[],
         option: { pageSize: number; pageIndex: number }

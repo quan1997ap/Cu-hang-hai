@@ -1,0 +1,11 @@
+{
+    "/proxy/*": {
+        "target": "https://prod-api-tbhh-5uk2.encr.app/",
+        "secure": false,
+        "changeOrigin": true,
+        "logLevel": "debug",
+        "pathRewrite": {
+            "^/proxy/": ""
+        }
+    }
+}

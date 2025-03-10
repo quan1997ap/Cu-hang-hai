@@ -1,7 +1,7 @@
 <mat-toolbar class="mat-elevation-z3">
     <div class="sidenav-header" [ngStyle]="{'width': sidenavExpandedWidth + 'px' }" >
         <div class="collapsed-button-wrap" [ngStyle]="{'width': ( sidenavCollapsedWidth - 1 ) + 'px' }">
-            <button mat-icon-button class="collapsed-button">
+            <button mat-icon-button class="collapsed-button" (click)="collapsed.set(!collapsed())">
                 <mat-icon> menu </mat-icon>
             </button>
         </div>
@@ -38,7 +38,9 @@
         <app-sidenav [collapsed]="collapsed()"></app-sidenav>
     </mat-sidenav>
 
-    <mat-sidenav-content class="content" [style.margin-left]="sidenavWidth()">
-        <router-outlet></router-outlet>
+    <mat-sidenav-content [style.margin-left]="sidenavWidth()">
+        <div class="content">
+            <router-outlet></router-outlet>
+        </div>
     </mat-sidenav-content>
 </mat-sidenav-container>

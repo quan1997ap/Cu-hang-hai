@@ -6,5 +6,6 @@ import { environment } from '../../../../environments/environment';
 })
 export class APIService {
     public loginUrl = `${environment.apiUrl}/login`;
-    public profileUrl = `${environment.apiUrl}/me`
+    public profileUrl = `${environment.apiUrl}/me`;
+    public usersUrl = `${environment.apiUrl}/users`;
 }

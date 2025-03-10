@@ -1,24 +1,29 @@
+$buttonHeight: 40px;
+$buttonRadius: 4px;
+
 body {
     // Button
     --mdc-filled-button-container-shape: 4px; // Border-radius
-    --mdc-filled-button-container-height: 36px; // Height
-    --mdc-filled-button-container-height: 36px;
-    --mdc-text-button-container-height: 36px;
+    --mdc-filled-button-container-height: $buttonHeight; // Height
+    --mdc-filled-button-container-height: $buttonHeight;
+    --mdc-text-button-container-height: $buttonHeight;
 }
 
-.icon-button{
- cursor: pointer;
- &:not(:disabled):hover{
-    color: #1b84ff;
- }
+.icon-button {
+    cursor: pointer;
+
+    &:not(:disabled):hover {
+        color: #1b84ff;
+    }
 }
+
 .mdc-fab {
     &.mat-mdc-extended-fab {
-        min-height: 36px;
-        height: 36px;
-        border-radius: 4px;
+        min-height: $buttonHeight;
+        height: $buttonHeight;
+        border-radius: $buttonRadius;
         box-shadow: none;
-        line-height: 36px;
+        line-height: $buttonHeight;
     }
 }
 
@@ -29,20 +34,111 @@ body {
     cursor: pointer;
     transition: all 500ms ease-in-out;
     position: relative;
+    padding: 12px 12px;
+    border-radius: $buttonRadius;
+    font-size: 1rem;
+    min-height: $buttonHeight;
+
+    &.min-width {
+        min-width: 120px;
+    }
+
     mat-icon {
         color: #222222;
     }
-    &:disabled{
+
+    &:disabled {
         opacity: 0.9;
         cursor: not-allowed;
     }
 
-    &.blue {
-        background: #005cbb;
+    &.info {
+        color: #4e4e4e;
+        background: #D3D3D3;
+        border: 1px solid #D3D3D3;
     }
-    &.accent:hover {
+
+    &.blue {
+        background: #507AE5;
+        color: #fff;
+
+        .mat-icon {
+            color: #fff !important;
+        }
+
+        &:hover {
+            background-color: #507AE5;
+            color: #fff;
+
+            .mat-icon {
+                color: #fff !important;
+            }
+        }
+
+        &:disabled {
+            background-color: #507AE5 !important;
+            color: #fff !important;
+            cursor: not-allowed !important;
+
+            .mat-icon {
+                color: #fff !important;
+            }
+        }
+    }
+
+    &.green {
+        background: #37B8BF;
+        color: #fff;
+
+        .mat-icon {
+            color: #fff !important;
+        }
+
+        &:hover {
+            background-color: rgb(38, 185, 192);
+            color: #fff;
+
+            .mat-icon {
+                color: #fff !important;
+            }
+        }
+
+        &:disabled {
+            background-color: #37B8BF !important;
+            color: #fff !important;
+            cursor: not-allowed !important;
+
+            .mat-icon {
+                color: #fff !important;
+            }
+        }
+    }
+
+    &.accent {
+        background-color: #e03;
+        color: #fff;
+        border-radius: 4px;
+
         mat-icon {
-            color: #e30736;
+            margin-right: 12px;
+            color: #FFFFFF !important;
+        }
+
+        &:hover,
+        &:active {
+            background-color: rgb(216, 18, 65) !important;
+            color: #fff !important;
+        }
+
+        &:disabled {
+            background-color: rgb(216, 18, 65) !important;
+            color: #D3D3D3 !important;
+            opacity: 0.8;
+            cursor: not-allowed !important;
+
+            .mat-icon {
+                color: #D3D3D3 !important;
+            }
         }
     }
 
@@ -52,10 +148,11 @@ body {
         }
     }
 
-    .mdc-button__label{
+    .mdc-button__label {
         width: 100%;
         position: relative;
         font-size: 14px;
+
         .subfix {
             position: absolute;
             right: -10px;
@@ -65,9 +162,10 @@ body {
 }
 
 mat-icon {
-    &.scale-08{
+    &.scale-08 {
         transform: scale(0.8);
     }
+
     &.w-12 {
         width: 12px !important;
     }
@@ -103,6 +201,7 @@ mat-icon {
     height: 32px !important;
     border-radius: 4px !important;
     box-shadow: none !important;
+
     mat-icon {
         color: #071437;
         height: 20px;
@@ -135,14 +234,19 @@ mat-icon {
         <mat-icon class="w-12" svgIcon="plus"></mat-icon>
     </button>
     */
-    &.blue{
+    &.blue {
         background-color: #1B84FF !important;
-        .mdc-button__label, mat-icon {
+
+        .mdc-button__label,
+        mat-icon {
             color: #fff !important;
         }
-        &:hover{
-            background-color:  #056EE9 !important;
-            .mdc-button__label, mat-icon {
+
+        &:hover {
+            background-color: #056EE9 !important;
+
+            .mdc-button__label,
+            mat-icon {
                 color: #fff !important;
             }
         }

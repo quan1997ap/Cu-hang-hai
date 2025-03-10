@@ -1,16 +1,25 @@
 <!-- Item -->
 <a 
     mat-list-item 
+    [matTooltip]="collapsed() ? item().label : null"
+    [matTooltipPosition]="'right'"
     class="menu-item"
     [routerLink]="item().router"
     [routerLinkActive]="'selected-menu-item'" 
     #rla="routerLinkActive"
     [activated]="rla.isActive"
     (click)="toggleNested()">
-    <mat-icon matListItemIcon [fontSet]="rla.isActive ? 'material-icons' : 'material-icons-outlined'" svgIcon="{{item().icon}}">
-        {{item().icon}}
-    </mat-icon>
-    <span matListItemTitle>{{item().label}}</span>
+
+    @if ( item().iconType == 'svg' ) {
+        <mat-icon matListItemIcon svgIcon="{{item().icon}}"> </mat-icon>
+    } @else {
+        <mat-icon matListItemIcon [fontSet]="rla.isActive ? 'material-icons' : 'material-icons-outlined'" > {{item().icon}} </mat-icon>
+    }
+
+
+    @if ( !collapsed() ) {
+        <span matListItemTitle *ngIf="!collapsed()">{{item().label}}</span>
+    }
     @if ( item().subItems ){
         <span matListItemMeta>
             @if( nestedMenuOpen() ){
@@ -28,15 +37,21 @@
         @for( subItem of item().subItems; track subItem.label ){
             <a mat-list-item 
                 class="menu-item"
+                [matTooltip]="collapsed() ? item().label : null"
+                [matTooltipPosition]="'right'"
                 [class.indented]="!collapsed()"
                 [routerLink]="subItem.router" 
                 [routerLinkActive]="'selected-menu-item'" 
                 #rla="routerLinkActive"
                 [activated]="rla.isActive">
-                <mat-icon matListItemIcon [fontSet]="rla.isActive ? 'material-icons' : 'material-icons-outlined'">
-                    {{subItem.icon}}
-                </mat-icon>
-                <span matListItemTitle>{{subItem.label}}</span>
+                @if ( subItem.iconType == 'svg' ) {
+                    <mat-icon matListItemIcon svgIcon="{{subItem.icon}}"> </mat-icon>
+                } @else {
+                    <mat-icon matListItemIcon [fontSet]="rla.isActive ? 'material-icons' : 'material-icons-outlined'" > {{subItem.icon}} </mat-icon>
+                }
+                @if ( !collapsed() ) {
+                    <span matListItemTitle *ngIf="!collapsed()">{{subItem.label}}</span>
+                }
             </a>
         }
     </div>

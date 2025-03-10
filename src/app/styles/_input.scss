@@ -1,11 +1,12 @@
 body {
     // Input - mat-form-field
-    --mat-form-field-container-height: 42px; // Min height
+    --mat-form-field-container-height: 40px; // Min height
     --mat-form-field-container-vertical-padding: 8px; // Padding vertical
     --mdc-filled-text-field-container-color: #fff; // Background input
     --mat-sys-surface-variant: #e8f0fe;
     --mat-form-field-state-layer-color: #fff; // Hover background
 }
+$inputRadius: 4px;
 
 mat-form-field.custom-input {
     .mdc-line-ripple {
@@ -25,13 +26,19 @@ mat-form-field.custom-input {
             }
         }
     }
-    .mdc-text-field--no-label .mat-mdc-form-field-infix{
+    .mat-mdc-form-field-infix{
         padding-top: 8px;
         padding-bottom: 7px;
         display: flex;
     }
     // Input outline
     &.outline{
+        border: 1px solid #E9E9E9;
+        border-radius: $inputRadius;
+        background: #fff;
+        &.mat-form-field-invalid{
+            border: 1px solid #E30736 !important;
+        }
         input::placeholder {
             font-weight: 500;
             opacity: 0.5;
@@ -42,11 +49,6 @@ mat-form-field.custom-input {
             &:not(.mdc-text-field--disabled):hover{
                 background-color: transparent !important;
             }
-        }
-        .mat-mdc-form-field-flex{
-            border: 1px solid #99a1b7;
-            border-radius: 8px;
-            background: #fff;
         }
         .mat-mdc-form-field-icon-prefix>.mat-icon, .mat-mdc-form-field-icon-suffix>.mat-icon{
             padding: 0 8px !important;
